@@ -1,8 +1,0 @@
-package UserStorie4;
-import UserStorie1.*;
-import UserStorie3.*;
-public class Movimentacoes {
-	public void acessaResumoMensal() {
-		
-	}
-}

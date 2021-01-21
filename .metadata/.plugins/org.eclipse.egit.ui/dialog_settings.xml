@@ -2,6 +2,7 @@
 <section name="Workbench">
 	<item value="0" key="org.eclipse.egit.ui.internal.clone.GitSelectWizardPageWizardSel"/>
 	<list key="RepositorySelectionPage.UsedUris">
+		<item value="file:///C:\Users\luiz.eduardo\eclipse-workspace\AprendendoSeleniumWebDriver\AprendendoSeleniumWebDriver"/>
 		<item value="https://github.com/Pantheon2020/ProvaSelenium.git"/>
 	</list>
 	<list key="EGit.KnownHosts">
