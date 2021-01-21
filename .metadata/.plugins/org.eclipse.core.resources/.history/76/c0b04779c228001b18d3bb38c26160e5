@@ -1,0 +1,14 @@
+package UserStorie4;
+
+import org.openqa.selenium.By;
+
+import UserStorie3.GerenciamentoContas;
+public class Movimentacoes extends GerenciamentoContas {
+	public void acessaResumoMensal() throws Exception{
+		fazerLogin();
+		aguardar();
+		driver.findElement(By.linkText("Resumo Mensal")).click();
+		System.out.println("Acessando o menu de Resumo Mensal");
+	}
+	
+}

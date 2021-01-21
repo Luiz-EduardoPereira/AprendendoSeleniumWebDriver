@@ -1,0 +1,10 @@
+package UserStorie4;
+
+import UserStorie1.*;
+import UserStorie3.*;
+public class Movimentacoes extends GerenciamentoContas {
+	public void acessaResumoMensal() throws Exception{
+		fazerLogin();
+		aguardar();
+	}
+}
