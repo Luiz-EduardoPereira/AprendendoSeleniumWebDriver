@@ -1,8 +1,8 @@
 import java.util.concurrent.TimeUnit;
-
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -24,22 +24,20 @@ public class TesteGoogle {
 	}
 	@Test
 	public void realizarPesquisaGoogle(){
-		inicializar();
 		abrirGuiaGoogle();
 		pausa();
 		driver.findElement(By.xpath("//input[@name='q']")).sendKeys("Java");
-		driver.findElement(By.xpath("//div[@class='FPdoLc tfB0Bf']//input[@name='btnK']")).click();
+		driver.findElement(By.xpath("//div[@class='FPdoLc tfB0Bf']//input[@name='btnK']")).sendKeys(Keys.ENTER);
+		Assert.assertEquals("Java", driver.findElement(By.xpath("//span[.='Java']")).getAttribute("innerText"));
 	}
 	@Test
 	public void validarTituloGoogle() {
-		inicializar();
 		abrirGuiaGoogle();
 		pausa();
 		Assert.assertEquals("Google", driver.getTitle());
 	}
 	@Test
 	public void validarUrlGoogle() {
-		inicializar();
 		abrirGuiaGoogle();
 		pausa();
 		Assert.assertEquals("https://www.google.com.br/", driver.getCurrentUrl());
