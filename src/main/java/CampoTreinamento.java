@@ -2,7 +2,9 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
 
 public class CampoTreinamento {
 	private static WebDriver driver;
@@ -85,7 +87,37 @@ public class CampoTreinamento {
 		Assert.assertFalse(driver.findElement(By.id("elementosForm:comidaFavorita:0")).isSelected());
 	}
 	@Test
-	public void usarComboBox() {
-		
+	public void usarComboBoxSelecionarIndex() {
+		inicializar();
+		WebElement elemento = driver.findElement(By.id("elementosForm:escolaridade"));
+		Select combo = new Select(elemento);
+		combo.selectByIndex(4);
+		Assert.assertEquals("Superior", combo.getFirstSelectedOption().getText());
+	}
+	@Test
+	public void usarComboBoxSelecionarValue() {
+		inicializar();
+		WebElement elemento = driver.findElement(By.id("elementosForm:escolaridade"));
+		Select combo = new Select(elemento);
+		combo.selectByValue("1grauincomp");
+		Assert.assertEquals("1o grau incompleto", combo.getFirstSelectedOption().getText());
+	}
+	@Test
+	public void usarComboBoxSelecionarVisibleText() {
+		inicializar();
+		WebElement elemento = driver.findElement(By.id("elementosForm:escolaridade"));
+		Select combo = new Select(elemento);
+		combo.selectByVisibleText("Doutorado");
+		Assert.assertEquals("Doutorado", combo.getFirstSelectedOption().getText());
+	}
+	@Test
+	public void usarComboBoxMultiplo() {
+		inicializar();
+		WebElement elemento = driver.findElement(By.id("elementosForm:esportes"));
+		Select combo = new Select(elemento);
+		combo.selectByVisibleText("Natacao");
+		combo.selectByVisibleText("Corrida");
+		combo.selectByVisibleText("Futebol");
+		Assert.assertEquals("Natacao", combo.getAllSelectedOptions());
 	}
 }
