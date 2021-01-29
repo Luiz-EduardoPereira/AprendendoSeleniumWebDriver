@@ -160,4 +160,16 @@ public class CampoTreinamento {
 		combo.deselectByVisibleText("Corrida");
 		Assert.assertEquals("Natacao", combo.getFirstSelectedOption().getText());
 	}
+	@Test
+	public void clicarBotaoCliqueMe() {
+		inicializar();
+		driver.findElement(By.id("buttonSimple")).click();
+		Assert.assertEquals("Obrigado!", driver.findElement(By.id("buttonSimple")).getAttribute("value"));
+	}
+	@Test
+	public void usarLinkVoltar() {
+		inicializar();
+		driver.findElement(By.linkText("Voltar")).click();
+		Assert.assertEquals("Voltou!", driver.findElement(By.id("resultado")).getText());
+	}
 }
