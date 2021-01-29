@@ -89,6 +89,14 @@ public class CampoTreinamento {
 		Assert.assertFalse(driver.findElement(By.id("elementosForm:comidaFavorita:0")).isSelected());
 	}
 	@Test
+	public void pegarQuantidadeOpcoesComboBoxEscolaridade() {
+		inicializar();
+		WebElement elemento = driver.findElement(By.id("elementosForm:escolaridade"));
+		Select combo = new Select(elemento);
+		List<WebElement> listaOpcoes = combo.getOptions();
+		Assert.assertEquals(8, listaOpcoes.size());
+	}
+	@Test
 	public void usarComboBoxSelecionarIndex() {
 		inicializar();
 		WebElement elemento = driver.findElement(By.id("elementosForm:escolaridade"));
@@ -113,6 +121,14 @@ public class CampoTreinamento {
 		Assert.assertEquals("Doutorado", combo.getFirstSelectedOption().getText());
 	}
 	@Test
+	public void pegarQuantidadeOpcoesComboBoxEsportes() {
+		inicializar();
+		WebElement elemento = driver.findElement(By.id("elementosForm:esportes"));
+		Select combo = new Select(elemento);
+		List<WebElement> listaOpcoes = combo.getOptions();
+		Assert.assertEquals(5, listaOpcoes.size());
+	}
+	@Test
 	public void usarComboBoxMultiplo() {
 		inicializar();
 		WebElement elemento = driver.findElement(By.id("elementosForm:esportes"));
@@ -121,6 +137,27 @@ public class CampoTreinamento {
 		combo.selectByVisibleText("Corrida");
 		combo.selectByVisibleText("Futebol");
 		List<WebElement> listaComboBox = combo.getAllSelectedOptions();
-		Assert.assertEquals("3", listaComboBox);
+		Assert.assertEquals(3, listaComboBox.size());
+	}
+	@Test
+	public void desmarcarTodosComboBox() {
+		inicializar();
+		WebElement elemento = driver.findElement(By.id("elementosForm:esportes"));
+		Select combo = new Select(elemento);
+		combo.selectByVisibleText("Natacao");
+		combo.selectByVisibleText("Corrida");
+		combo.deselectAll();
+		List<WebElement> listaComboBox = combo.getAllSelectedOptions();
+		Assert.assertEquals(0, listaComboBox.size());
+	}
+	@Test
+	public void desmarcarUmComboBox() {
+		inicializar();
+		WebElement elemento = driver.findElement(By.id("elementosForm:esportes"));
+		Select combo = new Select(elemento);
+		combo.selectByVisibleText("Natacao");
+		combo.selectByVisibleText("Corrida");
+		combo.deselectByVisibleText("Corrida");
+		Assert.assertEquals("Natacao", combo.getFirstSelectedOption().getText());
 	}
 }
