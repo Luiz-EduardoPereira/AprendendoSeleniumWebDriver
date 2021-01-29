@@ -1,3 +1,5 @@
+import java.util.List;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -118,6 +120,7 @@ public class CampoTreinamento {
 		combo.selectByVisibleText("Natacao");
 		combo.selectByVisibleText("Corrida");
 		combo.selectByVisibleText("Futebol");
-		Assert.assertEquals("Natacao", combo.getAllSelectedOptions());
+		List<WebElement> listaComboBox = combo.getAllSelectedOptions();
+		Assert.assertEquals("3", listaComboBox);
 	}
 }
