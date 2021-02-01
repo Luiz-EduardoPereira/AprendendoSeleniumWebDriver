@@ -172,4 +172,10 @@ public class CampoTreinamento {
 		driver.findElement(By.linkText("Voltar")).click();
 		Assert.assertEquals("Voltou!", driver.findElement(By.id("resultado")).getText());
 	}
+	@Test
+	public void buscarTextNaPagina() {
+		inicializar();
+		Assert.assertEquals("Campo de Treinamento", driver.findElement(By.tagName("h3")).getText());
+		Assert.assertEquals("Cuidado onde clica, muitas armadilhas...", driver.findElement(By.className("facilAchar")).getText());
+	}
 }
