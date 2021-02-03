@@ -14,4 +14,24 @@ public class CampoTreinamentoAlert extends CampoTreinamento{
 		alerta.accept();
 		driver.findElement(By.id("elementosForm:nome")).sendKeys(pegarTextAlert);
 	}
+	@Test
+	public void usarAlertConfirm() {
+		inicializar();
+		driver.findElement(By.id("confirm")).click();
+		Alert alerta = driver.switchTo().alert();
+		Assert.assertEquals("Confirm Simples", alerta.getText());
+		alerta.accept();
+		Assert.assertEquals("Confirmado", alerta.getText());
+		alerta.accept();
+	}
+	@Test
+	public void usarAlertCancelar() {
+		inicializar();
+		driver.findElement(By.id("confirm")).click();
+		Alert alerta = driver.switchTo().alert();
+		Assert.assertEquals("Confirm Simples", alerta.getText());
+		alerta.dismiss();
+		Assert.assertEquals("Negado", alerta.getText());
+		alerta.accept();
+	}
 }
