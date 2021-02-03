@@ -9,7 +9,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 
 public class CampoTreinamento {
-	private static WebDriver driver;
+	public static WebDriver driver;
 	public void inicializar() {
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
