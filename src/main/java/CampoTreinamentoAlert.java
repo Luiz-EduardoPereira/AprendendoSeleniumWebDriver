@@ -34,4 +34,30 @@ public class CampoTreinamentoAlert extends CampoTreinamento{
 		Assert.assertEquals("Negado", alerta.getText());
 		alerta.accept();
 	}
+	@Test
+	public void usarAlertPromptConfirmando() {
+		inicializar();
+		driver.findElement(By.id("prompt")).click();
+		Alert alerta = driver.switchTo().alert();
+		String numero = "123";
+		alerta.sendKeys(numero);
+		alerta.accept();
+		Assert.assertEquals("Era "+numero+"?", alerta.getText());
+		alerta.accept();
+		Assert.assertEquals(":D", alerta.getText());
+		alerta.accept();
+		}
+	@Test
+	public void usarAlertPromptNaoConfirmando() {
+		inicializar();
+		driver.findElement(By.id("prompt")).click();
+		Alert alerta = driver.switchTo().alert();
+		String numero = "123";
+		alerta.sendKeys(numero);
+		alerta.accept();
+		Assert.assertEquals("Era "+numero+"?", alerta.getText());
+		alerta.dismiss();
+		Assert.assertEquals(":(", alerta.getText());
+		alerta.accept();
+	}
 }
