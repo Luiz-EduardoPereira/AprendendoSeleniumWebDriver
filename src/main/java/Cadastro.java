@@ -1,3 +1,4 @@
+import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -19,20 +20,25 @@ public class Cadastro{
 		driver.findElement(By.id("elementosForm:sobrenome")).sendKeys("Eduardo");
 		driver.findElement(By.id("elementosForm:sexo:0")).click();
 		driver.findElement(By.id("elementosForm:comidaFavorita:0")).click();
-		driver.findElement(By.id("elementosForm:comidaFavorita:2")).click();
 		WebElement elementoComboUnico = driver.findElement(By.id("elementosForm:escolaridade"));
 		Select comboUnico = new Select(elementoComboUnico);
 		comboUnico.selectByVisibleText("Superior");
 		WebElement elementoComboMultiplo = driver.findElement(By.id("elementosForm:esportes"));
 		Select comboMultiplo = new Select(elementoComboMultiplo);
 		comboMultiplo.selectByVisibleText("Futebol");
-		comboMultiplo.selectByVisibleText("Karate");
 		driver.findElement(By.id("elementosForm:sugestoes")).sendKeys("Devo aprender a fazer automatização com o Selenium WebDriver.");
 		driver.findElement(By.id("elementosForm:cadastrar")).click();
+		validarCadastro();
 	}
-	@Test
 	public void validarCadastro() {
-		
+		Assert.assertTrue(driver.findElement(By.id("resultado")).getText().startsWith("Cadastrado!"));
+		Assert.assertEquals("Nome: Luiz", driver.findElement(By.id("descNome")).getText());
+		Assert.assertEquals("Sobrenome: Eduardo", driver.findElement(By.id("descSobrenome")).getText());
+		Assert.assertEquals("Sexo: Masculino", driver.findElement(By.id("descSexo")).getText());
+		Assert.assertEquals("Comida: Carne", driver.findElement(By.id("descComida")).getText());
+		Assert.assertEquals("Escolaridade: superior", driver.findElement(By.id("descEscolaridade")).getText());
+		Assert.assertEquals("Esportes: Futebol", driver.findElement(By.id("descEsportes")).getText());
+		Assert.assertEquals("Sugestoes: Devo aprender a fazer automatização com o Selenium WebDriver.", driver.findElement(By.id("descSugestoes")).getText());
 	}
 }
 
