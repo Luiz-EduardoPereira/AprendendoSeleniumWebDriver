@@ -53,7 +53,7 @@ public class Cadastro{
 	}
 	public void validarCadastro() {
 		Assert.assertTrue(driver.findElement(By.id("resultado")).getText().startsWith("Cadastrado!"));
-		Assert.assertEquals("Nome: Luiz", driver.findElement(By.id("descNome")).getText());
+		Assert.assertTrue(driver.findElement(By.id("descNome")).getText().endsWith("Luiz"));
 		Assert.assertEquals("Sobrenome: Eduardo", driver.findElement(By.id("descSobrenome")).getText());
 		Assert.assertEquals("Sexo: Masculino", driver.findElement(By.id("descSexo")).getText());
 		Assert.assertEquals("Comida: Carne", driver.findElement(By.id("descComida")).getText());
