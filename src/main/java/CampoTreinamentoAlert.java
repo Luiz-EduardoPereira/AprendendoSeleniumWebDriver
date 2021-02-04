@@ -3,7 +3,7 @@ import org.junit.Test;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 
-public class CampoTreinamentoAlert extends CampoTreinamento{
+public class CampoTreinamentoAlert extends CampoTreinamento{	
 	@Test
 	public void usarAlertSimples() {
 		inicializar();
