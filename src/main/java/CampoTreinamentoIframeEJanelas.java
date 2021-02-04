@@ -3,10 +3,11 @@ import org.junit.Test;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 
-public class CampoTreinamentoIframe{
+public class CampoTreinamentoIframeEJanelas{
 	public static WebDriver driver;
 	public void inicializar() {
 		driver = new ChromeDriver();
@@ -24,5 +25,18 @@ public class CampoTreinamentoIframe{
 		driver.switchTo().defaultContent();
 		driver.findElement(By.id("elementosForm:nome")).sendKeys("Frame button OK!");
 		Assert.assertEquals("Frame button OK!", driver.findElement(By.id("elementosForm:nome")).getAttribute("value"));
+	}
+	@Test
+	public void clicarAbrirPopup() {
+		inicializar();
+		String msgPopup= "Teste popup";
+		driver.findElement(By.id("buttonPopUpEasy")).click();
+		driver.switchTo().window("Popup");
+		driver.findElement(By.tagName("textarea")).sendKeys(msgPopup);
+		Assert.assertEquals(msgPopup, driver.findElement(By.tagName("textarea")).getAttribute("value"));
+		driver.close();
+		driver.switchTo().window("");
+		driver.findElement(By.tagName("textarea")).sendKeys(msgPopup);
+		Assert.assertEquals(msgPopup, driver.findElement(By.tagName("textarea")).getAttribute("value"));
 	}
 }
