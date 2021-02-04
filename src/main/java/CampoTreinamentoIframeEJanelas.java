@@ -39,4 +39,14 @@ public class CampoTreinamentoIframeEJanelas{
 		driver.findElement(By.tagName("textarea")).sendKeys(msgPopup);
 		Assert.assertEquals(msgPopup, driver.findElement(By.tagName("textarea")).getAttribute("value"));
 	}
+	@Test
+	public void clicarPopupDoMal() {
+		inicializar();
+		String msgPopup= "Teste popup";
+		driver.findElement(By.id("buttonPopUpHard")).click();
+		driver.switchTo().window((String)driver.getWindowHandles().toArray()[1]);
+		driver.findElement(By.tagName("textarea")).sendKeys(msgPopup);
+		driver.switchTo().window((String)driver.getWindowHandles().toArray()[0]);
+		driver.findElement(By.tagName("textarea")).sendKeys(msgPopup);
+		}
 }
