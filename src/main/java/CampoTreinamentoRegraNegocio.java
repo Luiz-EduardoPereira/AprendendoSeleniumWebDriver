@@ -56,8 +56,9 @@ public class CampoTreinamentoRegraNegocio {
 		combo.selectByVisibleText("O que eh esporte?");
 		btnCadastrar();
 		Alert alerta = driver.switchTo().alert();
-		Assert.assertEquals("Tem certeza que voce eh vegetariano?", alerta.getText());
+		Assert.assertEquals("Voce faz esporte ou nao?", alerta.getText());
 		alerta.accept();
+		combo.deselectByVisibleText("O que eh esporte?");
 		combo.selectByVisibleText("Natacao");
 	}
 	@Test
@@ -66,6 +67,7 @@ public class CampoTreinamentoRegraNegocio {
 		regraNegocioSobrenome();
 		regraNegocioSexo();
 		regraNegocioComida();
+		regraNegocioEsporte();
 		btnCadastrar();
 	}
 }
