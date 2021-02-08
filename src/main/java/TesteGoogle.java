@@ -1,5 +1,8 @@
 import java.util.concurrent.TimeUnit;
+
+import org.junit.After;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -7,18 +10,21 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class TesteGoogle {
-	WebDriver driver;
-	public void pausa() {
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-	}
+	private static WebDriver driver;
+	@Before
 	public void inicializar() {
-		System.setProperty("webdriver.chrome.driver", "C:\\Selenium\\chromedriver.exe");
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
 	}
+	@After
+	public void fecharBrowser() {
+		driver.quit();
+	}
+	public void pausa() {
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+	}
 	@Test
 	public void abrirGuiaGoogle() {
-		inicializar();
 		pausa();
 		driver.get("https://www.google.com.br/");
 	}

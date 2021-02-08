@@ -1,4 +1,6 @@
+import org.junit.After;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -8,15 +10,19 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 
 public class Cadastro{
-	public static WebDriver driver;
-	public void inicialiazar() {
+	private static WebDriver driver;
+	@Before
+	public void inicializar() {
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		driver.get("file:///" + System.getProperty("user.dir")+ "/src/main/resources/componentes.html");
 	}
+	@After
+	public void fecharBrowser() {
+		driver.quit();
+	}
 	@Test
 	public void verificarCamposObrigatorios() {
-		inicialiazar();
 		driver.findElement(By.id("elementosForm:cadastrar")).click();
 		Alert alertaNome = driver.switchTo().alert();
 		Assert.assertEquals("Nome eh obrigatorio", alertaNome.getText());
@@ -36,7 +42,6 @@ public class Cadastro{
 	}
 	@Test
 	public void realizarCadastro() {
-		inicialiazar();
 		driver.findElement(By.id("elementosForm:nome")).sendKeys("Luiz");
 		driver.findElement(By.id("elementosForm:sobrenome")).sendKeys("Eduardo");
 		driver.findElement(By.id("elementosForm:sexo:0")).click();
@@ -63,7 +68,6 @@ public class Cadastro{
 	}
 	@Test
 	public void realizarCadastroComOpcoesDiversas() {
-		inicialiazar();
 		driver.findElement(By.id("elementosForm:nome")).sendKeys("Luiz");
 		driver.findElement(By.id("elementosForm:sobrenome")).sendKeys("Eduardo");
 		driver.findElement(By.id("elementosForm:sexo:0")).click();

@@ -1,12 +1,26 @@
+import org.junit.After;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 
-public class CampoTreinamentoAlert extends CampoTreinamento{	
+public class CampoTreinamentoAlert{	
+	private static WebDriver driver;
+	@Before
+	public void inicializar() {
+		driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.get("file:///" + System.getProperty("user.dir")+ "/src/main/resources/componentes.html");
+	}
+	@After
+	public void fecharBrowser() {
+		driver.quit();
+	}
 	@Test
 	public void usarAlertSimples() {
-		inicializar();
 		driver.findElement(By.id("alert")).click();
 		Alert alerta = driver.switchTo().alert();
 		String pegarTextAlert = alerta.getText();
@@ -16,7 +30,6 @@ public class CampoTreinamentoAlert extends CampoTreinamento{
 	}
 	@Test
 	public void usarAlertConfirm() {
-		inicializar();
 		driver.findElement(By.id("confirm")).click();
 		Alert alerta = driver.switchTo().alert();
 		Assert.assertEquals("Confirm Simples", alerta.getText());
@@ -26,7 +39,6 @@ public class CampoTreinamentoAlert extends CampoTreinamento{
 	}
 	@Test
 	public void usarAlertCancelar() {
-		inicializar();
 		driver.findElement(By.id("confirm")).click();
 		Alert alerta = driver.switchTo().alert();
 		Assert.assertEquals("Confirm Simples", alerta.getText());
@@ -36,7 +48,6 @@ public class CampoTreinamentoAlert extends CampoTreinamento{
 	}
 	@Test
 	public void usarAlertPromptConfirmando() {
-		inicializar();
 		driver.findElement(By.id("prompt")).click();
 		Alert alerta = driver.switchTo().alert();
 		String numero = "123";
@@ -49,7 +60,6 @@ public class CampoTreinamentoAlert extends CampoTreinamento{
 		}
 	@Test
 	public void usarAlertPromptNaoConfirmando() {
-		inicializar();
 		driver.findElement(By.id("prompt")).click();
 		Alert alerta = driver.switchTo().alert();
 		String numero = "123";

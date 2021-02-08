@@ -1,4 +1,6 @@
+import org.junit.After;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -9,17 +11,21 @@ import org.openqa.selenium.support.ui.Select;
 
 
 public class CampoTreinamentoRegraNegocio {
-	public static WebDriver driver;
-	public void inicialiazar() {
+	private static WebDriver driver;
+	@Before
+	public void inicializar() {
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		driver.get("file:///" + System.getProperty("user.dir")+ "/src/main/resources/componentes.html");
+	}
+	@After
+	public void fecharBrowser() {
+		driver.quit();
 	}
 	public void btnCadastrar() {
 		driver.findElement(By.id("elementosForm:cadastrar")).click();
 	}
 	public void regraNegocioNome() {
-		inicialiazar();
 		btnCadastrar();
 		Alert alerta = driver.switchTo().alert();
 		Assert.assertEquals("Nome eh obrigatorio", alerta.getText());
