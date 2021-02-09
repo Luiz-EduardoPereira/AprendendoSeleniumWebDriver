@@ -29,7 +29,7 @@ public class DSL {
 	public boolean checarMarcacaoCheckBox(String id) {
 		return driver.findElement(By.id(id)).isSelected();
 	}
-	public void SelecionarComboBox(String id, String valor) {
+	public void selecionarComboBox(String id, String valor) {
 		WebElement elemento = driver.findElement(By.id(id));
 		Select combo = new Select(elemento);
 		combo.selectByVisibleText(valor);

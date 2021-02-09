@@ -110,7 +110,7 @@ public class CampoTreinamento {
 	}*/
 	@Test
 	public void usarComboBoxSelecionarVisibleText() {
-		dsl.SelecionarComboBox("elementosForm:escolaridade", "Doutorado");
+		dsl.selecionarComboBox("elementosForm:escolaridade", "Doutorado");
 		Assert.assertEquals("Doutorado", dsl.obterValorCombo("elementosForm:escolaridade"));
 	}
 	/*@Test
@@ -122,9 +122,9 @@ public class CampoTreinamento {
 	}*/
 	@Test
 	public void usarComboBoxMultiplo() {
-		dsl.SelecionarComboBox("elementosForm:esportes", "Natacao");
-		dsl.SelecionarComboBox("elementosForm:esportes", "Corrida");
-		dsl.SelecionarComboBox("elementosForm:esportes", "Futebol");
+		dsl.selecionarComboBox("elementosForm:esportes", "Natacao");
+		dsl.selecionarComboBox("elementosForm:esportes", "Corrida");
+		dsl.selecionarComboBox("elementosForm:esportes", "Futebol");
 		WebElement elemento = driver.findElement(By.id("elementosForm:esportes"));
 		Select combo = new Select(elemento);
 		List<WebElement> listaComboBox = combo.getAllSelectedOptions();
@@ -132,9 +132,9 @@ public class CampoTreinamento {
 	}
 	@Test
 	public void desmarcarTodosComboBox() {
-		dsl.SelecionarComboBox("elementosForm:esportes", "Natacao");
-		dsl.SelecionarComboBox("elementosForm:esportes", "Corrida");
-		dsl.SelecionarComboBox("elementosForm:esportes", "Futebol");
+		dsl.selecionarComboBox("elementosForm:esportes", "Natacao");
+		dsl.selecionarComboBox("elementosForm:esportes", "Corrida");
+		dsl.selecionarComboBox("elementosForm:esportes", "Futebol");
 		dsl.desmarcarTodosCombo("elementosForm:esportes");
 		WebElement elemento = driver.findElement(By.id("elementosForm:esportes"));
 		Select combo = new Select(elemento);
@@ -143,7 +143,7 @@ public class CampoTreinamento {
 	}
 	@Test
 	public void desmarcarUmComboBox() {
-		dsl.SelecionarComboBox("elementosForm:esportes", "Natacao");
+		dsl.selecionarComboBox("elementosForm:esportes", "Natacao");
 		dsl.desmarcarCombo("elementosForm:esportes", "Natacao");
 		//dsl.obterValorCombo("elementosForm:esportes");
 		WebElement elemento = driver.findElement(By.id("elementosForm:esportes"));
