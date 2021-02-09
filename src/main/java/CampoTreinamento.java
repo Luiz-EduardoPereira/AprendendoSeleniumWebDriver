@@ -86,8 +86,8 @@ public class CampoTreinamento {
 		dsl.clicarCheckBox("elementosForm:comidaFavorita:0");
 		dsl.clicarCheckBox("elementosForm:comidaFavorita:0");
 		Assert.assertFalse(dsl.checarMarcacaoCheckBox("elementosForm:comidaFavorita:0"));
-	}
-	/*//PRECISA AJUSTAR@Test
+	}/*				PRECISA AJUSTAR
+	@Test
 	public void pegarQuantidadeOpcoesComboBoxEscolaridade() {
 		WebElement elemento = driver.findElement(By.id("elementosForm:escolaridade"));
 		Select combo = new Select(elemento);
