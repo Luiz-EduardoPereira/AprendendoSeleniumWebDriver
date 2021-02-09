@@ -9,11 +9,13 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class CampoTreinamentoAlert{	
 	private static WebDriver driver;
+	private DSL dsl;
 	@Before
 	public void inicializar() {
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		driver.get("file:///" + System.getProperty("user.dir")+ "/src/main/resources/componentes.html");
+		dsl = new DSL(driver);
 	}
 	@After
 	public void fecharBrowser() {
@@ -21,16 +23,16 @@ public class CampoTreinamentoAlert{
 	}
 	@Test
 	public void usarAlertSimples() {
-		driver.findElement(By.id("alert")).click();
+		dsl.clicarBtn("alert");
 		Alert alerta = driver.switchTo().alert();
 		String pegarTextAlert = alerta.getText();
 		Assert.assertEquals("Alert Simples", pegarTextAlert);
 		alerta.accept();
-		driver.findElement(By.id("elementosForm:nome")).sendKeys(pegarTextAlert);
+		dsl.escreve("elementosForm:nome", pegarTextAlert);
 	}
 	@Test
 	public void usarAlertConfirm() {
-		driver.findElement(By.id("confirm")).click();
+		dsl.clicarBtn("confirm");
 		Alert alerta = driver.switchTo().alert();
 		Assert.assertEquals("Confirm Simples", alerta.getText());
 		alerta.accept();
@@ -39,7 +41,7 @@ public class CampoTreinamentoAlert{
 	}
 	@Test
 	public void usarAlertCancelar() {
-		driver.findElement(By.id("confirm")).click();
+		dsl.clicarBtn("confirm");
 		Alert alerta = driver.switchTo().alert();
 		Assert.assertEquals("Confirm Simples", alerta.getText());
 		alerta.dismiss();
@@ -48,7 +50,7 @@ public class CampoTreinamentoAlert{
 	}
 	@Test
 	public void usarAlertPromptConfirmando() {
-		driver.findElement(By.id("prompt")).click();
+		dsl.clicarBtn("prompt");
 		Alert alerta = driver.switchTo().alert();
 		String numero = "123";
 		alerta.sendKeys(numero);
@@ -60,7 +62,7 @@ public class CampoTreinamentoAlert{
 		}
 	@Test
 	public void usarAlertPromptNaoConfirmando() {
-		driver.findElement(By.id("prompt")).click();
+		dsl.clicarBtn("prompt");
 		Alert alerta = driver.switchTo().alert();
 		String numero = "123";
 		alerta.sendKeys(numero);

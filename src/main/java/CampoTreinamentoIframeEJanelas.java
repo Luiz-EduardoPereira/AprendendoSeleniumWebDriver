@@ -10,11 +10,13 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class CampoTreinamentoIframeEJanelas{
 	private static WebDriver driver;
+	private DSL dsl;
 	@Before
 	public void inicializar() {
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		driver.get("file:///" + System.getProperty("user.dir")+ "/src/main/resources/componentes.html");
+		dsl = new DSL(driver);
 	}
 	@After
 	public void fecharBrowser() {
@@ -23,33 +25,33 @@ public class CampoTreinamentoIframeEJanelas{
 	@Test
 	public void clicarBtnDetroFrame() {
 		driver.switchTo().frame("frame1");
-		driver.findElement(By.id("frameButton")).click();
+		dsl.clicarBtn("frameButton");
 		Alert alerta = driver.switchTo().alert();
 		Assert.assertEquals("Frame OK!", alerta.getText());
 		alerta.accept();
 		driver.switchTo().defaultContent();
-		driver.findElement(By.id("elementosForm:nome")).sendKeys("Frame button OK!");
-		Assert.assertEquals("Frame button OK!", driver.findElement(By.id("elementosForm:nome")).getAttribute("value"));
+		dsl.escreve("elementosForm:nome", "Frame button OK!");
+		Assert.assertEquals("Frame button OK!", dsl.obterTexto("elementosForm:nome"));
 	}
 	@Test
 	public void clicarAbrirPopup() {
 		String msgPopup= "Teste popup";
-		driver.findElement(By.id("buttonPopUpEasy")).click();
+		dsl.clicarBtn("buttonPopUpEasy");
 		driver.switchTo().window("Popup");
 		driver.findElement(By.tagName("textarea")).sendKeys(msgPopup);
-		Assert.assertEquals(msgPopup, driver.findElement(By.tagName("textarea")).getAttribute("value"));
+		Assert.assertEquals(msgPopup, dsl.obterTexto("textarea"));
 		driver.close();
 		driver.switchTo().window("");
-		driver.findElement(By.tagName("textarea")).sendKeys(msgPopup);
-		Assert.assertEquals(msgPopup, driver.findElement(By.tagName("textarea")).getAttribute("value"));
+		dsl.escreve("textarea", msgPopup);
+		Assert.assertEquals(msgPopup, dsl.obterTexto("textarea"));
 	}
 	@Test
 	public void clicarPopupDoMal() {
 		String msgPopup= "Teste popup";
-		driver.findElement(By.id("buttonPopUpHard")).click();
+		dsl.clicarBtn("buttonPopUpHard");
 		driver.switchTo().window((String)driver.getWindowHandles().toArray()[1]);
-		driver.findElement(By.tagName("textarea")).sendKeys(msgPopup);
+		dsl.escreve("textarea", msgPopup);
 		driver.switchTo().window((String)driver.getWindowHandles().toArray()[0]);
-		driver.findElement(By.tagName("textarea")).sendKeys(msgPopup);
+		dsl.escreve("textarea", msgPopup);
 		}
 }
