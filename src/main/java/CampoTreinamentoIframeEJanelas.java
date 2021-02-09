@@ -38,7 +38,7 @@ public class CampoTreinamentoIframeEJanelas{
 		String msgPopup= "Teste popup";
 		dsl.clicarBtn("buttonPopUpEasy");
 		driver.switchTo().window("Popup");
-		driver.findElement(By.tagName("textarea")).sendKeys(msgPopup);
+		dsl.escreve("textarea", msgPopup);
 		Assert.assertEquals(msgPopup, dsl.obterTexto("textarea"));
 		driver.close();
 		driver.switchTo().window("");
