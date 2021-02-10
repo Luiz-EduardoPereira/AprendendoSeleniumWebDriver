@@ -3,6 +3,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -30,27 +31,27 @@ public class CampoTreinamentoIframeEJanelas{
 		alerta.accept();
 		driver.switchTo().defaultContent();
 		dsl.escreve("elementosForm:nome", "Frame button OK!");
-		Assert.assertEquals("Frame button OK!", dsl.obterTexto("elementosForm:nome"));
+		Assert.assertEquals("Frame button OK!", dsl.obterTextoValue("elementosForm:nome"));
 	}
 	@Test
 	public void clicarAbrirPopup() {
-		String msgPopup= "Teste popup";
+		String msgPopup = "Teste popup";
 		dsl.clicarBtn("buttonPopUpEasy");
 		driver.switchTo().window("Popup");
-		dsl.escreve("textarea", msgPopup);
-		Assert.assertEquals(msgPopup, dsl.obterTexto("textarea"));
+		dsl.escreve(By.tagName("textarea"), msgPopup);
 		driver.close();
 		driver.switchTo().window("");
-		dsl.escreve("textarea", msgPopup);
-		Assert.assertEquals(msgPopup, dsl.obterTexto("textarea"));
+		dsl.escreve("elementosForm:sugestoes", msgPopup);
+		Assert.assertEquals(msgPopup, dsl.obterTextoValue("elementosForm:sugestoes"));
 	}
 	@Test
 	public void clicarPopupDoMal() {
 		String msgPopup= "Teste popup";
 		dsl.clicarBtn("buttonPopUpHard");
 		driver.switchTo().window((String)driver.getWindowHandles().toArray()[1]);
-		dsl.escreve("textarea", msgPopup);
+		dsl.escreve(By.tagName("textarea"), msgPopup);
 		driver.switchTo().window((String)driver.getWindowHandles().toArray()[0]);
-		dsl.escreve("textarea", msgPopup);
+		dsl.escreve(By.tagName("textarea"), msgPopup);
+		Assert.assertEquals(msgPopup, dsl.obterTextoValue("elementosForm:sugestoes"));
 		}
 }

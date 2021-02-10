@@ -64,5 +64,8 @@ public class DSL {
 	public String obterTexto(String id) {
 		return driver.findElement(By.id(id)).getText();
 	}
+	public String obterTextoValue(String id) {
+		return driver.findElement(By.id(id)).getAttribute("value");
+	}
 }
 	

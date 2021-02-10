@@ -11,10 +11,12 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class TesteGoogle {
 	private static WebDriver driver;
+	DSL dsl;
 	@Before
 	public void inicializar() {
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
+		dsl = new DSL(driver);
 	}
 	@After
 	public void fecharBrowser() {
@@ -32,9 +34,9 @@ public class TesteGoogle {
 	public void realizarPesquisaGoogle(){
 		abrirGuiaGoogle();
 		pausa();
-		driver.findElement(By.xpath("//input[@name='q']")).sendKeys("Java");
+		dsl.escreve(By.xpath("//input[@name='q']"), "Java");
 		driver.findElement(By.xpath("//div[@class='FPdoLc tfB0Bf']//input[@name='btnK']")).sendKeys(Keys.ENTER);
-		Assert.assertEquals("Java", driver.findElement(By.xpath("//span[.='Java']")).getAttribute("innerText"));
+		Assert.assertEquals("Java", dsl.obterTexto(By.xpath("//span[.='Java']")));
 	}
 	@Test
 	public void validarTituloGoogle() {
