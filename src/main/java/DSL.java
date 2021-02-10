@@ -20,14 +20,8 @@ public class DSL {
 	public void limparText(String id) {
 		driver.findElement(By.id(id)).clear();
 	}
-	public void clicarRadio(String id) {
-		driver.findElement(By.id(id)).click();
-	}
 	public boolean checarMarcacaoRadio(String id) {
 		return driver.findElement(By.id(id)).isSelected();
-	}
-	public void clicarCheckBox(String id) {
-		driver.findElement(By.id(id)).click();
 	}
 	public boolean checarMarcacaoCheckBox(String id) {
 		return driver.findElement(By.id(id)).isSelected();
@@ -52,11 +46,8 @@ public class DSL {
 		Select combo = new Select(elemento);
 		combo.deselectAll();
 	}
-	public void clicarBtn(String id) {
-		driver.findElement(By.id(id)).click();
-	}
-	public void clicarLinkText(String linkText) {
-		driver.findElement(By.linkText(linkText)).click();;
+	public void clicar(By by) {
+		driver.findElement(by).click();
 	}
 	public String obterTexto(By by) {
 		return driver.findElement(by).getText();
@@ -66,6 +57,9 @@ public class DSL {
 	}
 	public String obterTextoValue(String id) {
 		return driver.findElement(By.id(id)).getAttribute("value");
+	}
+	public boolean obterComecoTextoBoolean(String id, String texto) {
+		return driver.findElement(By.id(id)).getText().startsWith(texto);
 	}
 }
 	

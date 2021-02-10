@@ -11,7 +11,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class TesteGoogle {
 	private static WebDriver driver;
-	DSL dsl;
+	private DSL dsl;
 	@Before
 	public void inicializar() {
 		driver = new ChromeDriver();

@@ -25,7 +25,7 @@ public class CampoTreinamentoIframeEJanelas{
 	@Test
 	public void clicarBtnDetroFrame() {
 		driver.switchTo().frame("frame1");
-		dsl.clicarBtn("frameButton");
+		dsl.clicar(By.id("frameButton"));
 		Alert alerta = driver.switchTo().alert();
 		Assert.assertEquals("Frame OK!", alerta.getText());
 		alerta.accept();
@@ -36,7 +36,7 @@ public class CampoTreinamentoIframeEJanelas{
 	@Test
 	public void clicarAbrirPopup() {
 		String msgPopup = "Teste popup";
-		dsl.clicarBtn("buttonPopUpEasy");
+		dsl.clicar(By.id("buttonPopUpEasy"));
 		driver.switchTo().window("Popup");
 		dsl.escreve(By.tagName("textarea"), msgPopup);
 		driver.close();
@@ -47,7 +47,7 @@ public class CampoTreinamentoIframeEJanelas{
 	@Test
 	public void clicarPopupDoMal() {
 		String msgPopup= "Teste popup";
-		dsl.clicarBtn("buttonPopUpHard");
+		dsl.clicar(By.id("buttonPopUpHard"));
 		driver.switchTo().window((String)driver.getWindowHandles().toArray()[1]);
 		dsl.escreve(By.tagName("textarea"), msgPopup);
 		driver.switchTo().window((String)driver.getWindowHandles().toArray()[0]);

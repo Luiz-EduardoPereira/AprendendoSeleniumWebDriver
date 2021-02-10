@@ -3,6 +3,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -22,7 +23,7 @@ public class CampoTreinamentoAlert{
 	}
 	@Test
 	public void usarAlertSimples() {
-		dsl.clicarBtn("alert");
+		dsl.clicar(By.id("alert"));
 		Alert alerta = driver.switchTo().alert();
 		String pegarTextAlert = alerta.getText();
 		Assert.assertEquals("Alert Simples", pegarTextAlert);
@@ -31,7 +32,7 @@ public class CampoTreinamentoAlert{
 	}
 	@Test
 	public void usarAlertConfirm() {
-		dsl.clicarBtn("confirm");
+		dsl.clicar(By.id("confirm"));
 		Alert alerta = driver.switchTo().alert();
 		Assert.assertEquals("Confirm Simples", alerta.getText());
 		alerta.accept();
@@ -40,7 +41,7 @@ public class CampoTreinamentoAlert{
 	}
 	@Test
 	public void usarAlertCancelar() {
-		dsl.clicarBtn("confirm");
+		dsl.clicar(By.id("confirm"));
 		Alert alerta = driver.switchTo().alert();
 		Assert.assertEquals("Confirm Simples", alerta.getText());
 		alerta.dismiss();
@@ -49,7 +50,7 @@ public class CampoTreinamentoAlert{
 	}
 	@Test
 	public void usarAlertPromptConfirmando() {
-		dsl.clicarBtn("prompt");
+		dsl.clicar(By.id("prompt"));
 		Alert alerta = driver.switchTo().alert();
 		String numero = "123";
 		alerta.sendKeys(numero);
@@ -61,7 +62,7 @@ public class CampoTreinamentoAlert{
 		}
 	@Test
 	public void usarAlertPromptNaoConfirmando() {
-		dsl.clicarBtn("prompt");
+		dsl.clicar(By.id("prompt"));
 		Alert alerta = driver.switchTo().alert();
 		String numero = "123";
 		alerta.sendKeys(numero);

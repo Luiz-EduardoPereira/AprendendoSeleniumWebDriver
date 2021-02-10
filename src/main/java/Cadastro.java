@@ -3,6 +3,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -22,42 +23,42 @@ public class Cadastro{
 	}
 	@Test
 	public void verificarCamposObrigatorios() {
-		dsl.clicarBtn("elementosForm:cadastrar");
+		dsl.clicar(By.id("elementosForm:cadastrar"));
 		Alert alertaNome = driver.switchTo().alert();
 		Assert.assertEquals("Nome eh obrigatorio", alertaNome.getText());
 		alertaNome.accept();
 		dsl.escreve("elementosForm:nome", "Daceos");
-		dsl.clicarBtn("elementosForm:cadastrar");
+		dsl.clicar(By.id("elementosForm:cadastrar"));
 		Alert alertaSobrenome = driver.switchTo().alert();
 		Assert.assertEquals("Sobrenome eh obrigatorio", alertaSobrenome.getText());
 		alertaSobrenome.accept();
 		dsl.escreve("elementosForm:sobrenome", "Clicen");
-		dsl.clicarBtn("elementosForm:cadastrar");
+		dsl.clicar(By.id("elementosForm:cadastrar"));
 		Alert alertaSexo = driver.switchTo().alert();
 		Assert.assertEquals("Sexo eh obrigatorio", alertaSexo.getText());
 		alertaSobrenome.accept();
-		dsl.clicarBtn("elementosForm:sexo:1");
-		dsl.clicarBtn("elementosForm:cadastrar");
+		dsl.clicar(By.id("elementosForm:sexo:1"));
+		dsl.clicar(By.id("elementosForm:cadastrar"));
 	}
 	@Test
 	public void realizarCadastro() {
 		dsl.escreve("elementosForm:nome", "Luiz");
 		dsl.escreve("elementosForm:sobrenome", "Eduardo");
-		dsl.clicarBtn("elementosForm:sexo:0");
-		dsl.clicarRadio("elementosForm:comidaFavorita:0");
+		dsl.clicar(By.id("elementosForm:cadastrar"));
+		dsl.clicar(By.id("elementosForm:comidaFavorita:0"));
 		dsl.selecionarComboBox("elementosForm:escolaridade", "Superior");
 		dsl.selecionarComboBox("elementosForm:esportes", "Futebol");
 		dsl.escreve("elementosForm:sugestoes", "Devo aprender a fazer automatização com o Selenium WebDriver.");
-		dsl.clicarBtn("elementosForm:cadastrar");
+		dsl.clicar(By.id("elementosForm:cadastrar"));
 		validarCadastro();
 	}
 	public void validarCadastro() {
-		//Assert.assertTrue(dsl.obterTexto("resultado")).getText().startsWith("Cadastrado!"));
-		//Assert.assertTrue(driver.findElement(By.id("descNome")).getText().endsWith("Luiz"));
+		Assert.assertTrue(dsl.obterComecoTextoBoolean("resultado", "Cadastrado!"));
+		Assert.assertEquals("Nome: Luiz", dsl.obterTexto("descNome"));
 		Assert.assertEquals("Sobrenome: Eduardo", dsl.obterTexto("descSobrenome"));
 		Assert.assertEquals("Sexo: Masculino", dsl.obterTexto("descSexo"));
 		Assert.assertEquals("Comida: Carne", dsl.obterTexto("descComida"));
-		Assert.assertEquals("Escolaridade: superior", dsl.obterTexto("descEscolaridade"));
+		Assert.assertEquals("Escolaridade: superior",  dsl.obterTexto("descEscolaridade"));
 		Assert.assertEquals("Esportes: Futebol", dsl.obterTexto("descEsportes"));
 		Assert.assertEquals("Sugestoes: Devo aprender a fazer automatização com o Selenium WebDriver.", dsl.obterTexto("descSugestoes"));
 	}
@@ -65,18 +66,18 @@ public class Cadastro{
 	public void realizarCadastroComOpcoesDiversas() {
 		dsl.escreve("elementosForm:nome", "Luiz");
 		dsl.escreve("elementosForm:sobrenome", "Eduardo");
-		dsl.clicarRadio("elementosForm:sexo:0");
-		dsl.clicarCheckBox("elementosForm:comidaFavorita:0");
-		dsl.clicarCheckBox("elementosForm:comidaFavorita:2");
+		dsl.clicar(By.id("elementosForm:sexo:0"));
+		dsl.clicar(By.id("elementosForm:comidaFavorita:0"));
+		dsl.clicar(By.id("elementosForm:comidaFavorita:2"));
 		dsl.selecionarComboBox("elementosForm:escolaridade", "Superior");
 		dsl.selecionarComboBox("elementosForm:esportes", "Futebol");
 		dsl.selecionarComboBox("elementosForm:esportes", "Natacao");
 		dsl.escreve("elementosForm:sugestoes", "Devo aprender a fazer automatização com o Selenium WebDriver.");
-		dsl.clicarBtn("elementosForm:cadastrar");
+		dsl.clicar(By.id("elementosForm:cadastrar"));
 		validarCadastroMultiplo();
 	}
 	public void validarCadastroMultiplo() {
-		//Assert.assertTrue(driver.findElement(By.id("resultado")).getText().startsWith("Cadastrado!"));
+		Assert.assertTrue(dsl.obterComecoTextoBoolean("resultado", "Cadastrado!"));
 		Assert.assertEquals("Nome: Luiz", dsl.obterTexto("descNome"));
 		Assert.assertEquals("Sobrenome: Eduardo", dsl.obterTexto("descSobrenome"));
 		Assert.assertEquals("Sexo: Masculino", dsl.obterTexto("descSexo"));

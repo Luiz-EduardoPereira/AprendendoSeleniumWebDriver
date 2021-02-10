@@ -58,33 +58,33 @@ public class CampoTreinamento {
 	}
 	@Test
 	public void usarRadioButton() {
-		dsl.clicarRadio("elementosForm:sexo:0");
+		dsl.clicar(By.id("elementosForm:sexo:0"));
 		Assert.assertTrue(dsl.checarMarcacaoRadio("elementosForm:sexo:0"));
 	}
 	@Test
 	public void usarRadioButtonAlternando() {
-		dsl.clicarRadio("elementosForm:sexo:0");
-		dsl.clicarRadio("elementosForm:sexo:1");
+		dsl.clicar(By.id("elementosForm:sexo:0"));
+		dsl.clicar(By.id("elementosForm:sexo:1"));
 		Assert.assertTrue(dsl.checarMarcacaoRadio("elementosForm:sexo:1"));
 	}
 	@Test
 	public void usarCheckBox() {
-		dsl.clicarCheckBox("elementosForm:comidaFavorita:0");
+		dsl.clicar(By.id("elementosForm:comidaFavorita:0"));
 		Assert.assertTrue(dsl.checarMarcacaoCheckBox("elementosForm:comidaFavorita:0"));
 	}
 	@Test
 	public void usarCheckBoxMultiplo() {
-		dsl.clicarCheckBox("elementosForm:comidaFavorita:0");
-		dsl.clicarCheckBox("elementosForm:comidaFavorita:1");
-		dsl.clicarCheckBox("elementosForm:comidaFavorita:2");
+		dsl.clicar(By.id("elementosForm:comidaFavorita:0"));
+		dsl.clicar(By.id("elementosForm:comidaFavorita:1"));
+		dsl.clicar(By.id("elementosForm:comidaFavorita:2"));
 		dsl.checarMarcacaoCheckBox("elementosForm:comidaFavorita:0");
 		dsl.checarMarcacaoCheckBox("elementosForm:comidaFavorita:1");
 		dsl.checarMarcacaoCheckBox("elementosForm:comidaFavorita:2");
 	}
 	@Test
 	public void limparCheckBox() {
-		dsl.clicarCheckBox("elementosForm:comidaFavorita:0");
-		dsl.clicarCheckBox("elementosForm:comidaFavorita:0");
+		dsl.clicar(By.id("elementosForm:comidaFavorita:0"));
+		dsl.clicar(By.id("elementosForm:comidaFavorita:0"));
 		Assert.assertFalse(dsl.checarMarcacaoCheckBox("elementosForm:comidaFavorita:0"));
 	}/*				PRECISA AJUSTAR
 	@Test
@@ -153,12 +153,12 @@ public class CampoTreinamento {
 	}
 	@Test
 	public void clicarBotaoCliqueMe() {
-		dsl.clicarBtn("buttonSimple");
+		dsl.clicar(By.id("buttonSimple"));
 		Assert.assertEquals("Obrigado!", dsl.obterValorCampo("buttonSimple"));
 	}
 	@Test
 	public void usarLinkVoltar() {
-		dsl.clicarLinkText("Voltar");
+		dsl.clicar(By.linkText("Voltar"));
 		Assert.assertEquals("Voltou!", dsl.obterTexto("resultado"));
 	}
 	@Test

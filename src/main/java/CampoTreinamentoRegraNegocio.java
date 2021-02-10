@@ -3,6 +3,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -21,7 +22,7 @@ public class CampoTreinamentoRegraNegocio {
 		driver.quit();
 	}
 	public void btnCadastrar() {
-		dsl.clicarBtn("elementosForm:cadastrar");
+		dsl.clicar(By.id("elementosForm:cadastrar"));
 	}
 	public void regraNegocioNome() {
 		btnCadastrar();
@@ -42,16 +43,16 @@ public class CampoTreinamentoRegraNegocio {
 		Alert alerta = driver.switchTo().alert();
 		Assert.assertEquals("Sexo eh obrigatorio", alerta.getText());
 		alerta.accept();
-		dsl.clicarRadio("elementosForm:sexo:0");
+		dsl.clicar(By.id("elementosForm:sexo:0"));
 	}
 	public void regraNegocioComida() {
-		dsl.clicarRadio("elementosForm:comidaFavorita:0");
-		dsl.clicarRadio("elementosForm:comidaFavorita:3");
+		dsl.clicar(By.id("elementosForm:comidaFavorita:0"));
+		dsl.clicar(By.id("elementosForm:comidaFavorita:3"));
 		btnCadastrar();
 		Alert alerta = driver.switchTo().alert();
 		Assert.assertEquals("Tem certeza que voce eh vegetariano?", alerta.getText());
 		alerta.accept();
-		dsl.clicarRadio("elementosForm:comidaFavorita:3");
+		dsl.clicar(By.id("elementosForm:comidaFavorita:3"));
 	}
 	public void regraNegocioEsporte() {
 		dsl.selecionarComboBox("elementosForm:esportes", "Natacao");
