@@ -2,7 +2,6 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -26,41 +25,31 @@ public class CampoTreinamentoRegraNegocio {
 	}
 	public void regraNegocioNome() {
 		btnCadastrar();
-		Alert alerta = driver.switchTo().alert();
-		Assert.assertEquals("Nome eh obrigatorio", alerta.getText());
-		alerta.accept();
-		dsl.escreve("elementosForm:nome", "Usxowu");
+		Assert.assertEquals("Nome eh obrigatorio", dsl.alertaObterTextoAceitar());
+		dsl.escrever("elementosForm:nome", "Usxowu");
 	}
 	public void regraNegocioSobrenome() {
 		btnCadastrar();
-		Alert alerta = driver.switchTo().alert();
-		Assert.assertEquals("Sobrenome eh obrigatorio", alerta.getText());
-		alerta.accept();
-		dsl.escreve("elementosForm:sobrenome", "Laostmodea");
+		Assert.assertEquals("Sobrenome eh obrigatorio", dsl.alertaObterTextoAceitar());
+		dsl.escrever("elementosForm:sobrenome", "Laostmodea");
 	}
 	public void regraNegocioSexo() {
 		btnCadastrar();
-		Alert alerta = driver.switchTo().alert();
-		Assert.assertEquals("Sexo eh obrigatorio", alerta.getText());
-		alerta.accept();
+		Assert.assertEquals("Sexo eh obrigatorio", dsl.alertaObterTextoAceitar());
 		dsl.clicar(By.id("elementosForm:sexo:0"));
 	}
 	public void regraNegocioComida() {
 		dsl.clicar(By.id("elementosForm:comidaFavorita:0"));
 		dsl.clicar(By.id("elementosForm:comidaFavorita:3"));
 		btnCadastrar();
-		Alert alerta = driver.switchTo().alert();
-		Assert.assertEquals("Tem certeza que voce eh vegetariano?", alerta.getText());
-		alerta.accept();
+		Assert.assertEquals("Tem certeza que voce eh vegetariano?", dsl.alertaObterTextoAceitar());
 		dsl.clicar(By.id("elementosForm:comidaFavorita:3"));
 	}
 	public void regraNegocioEsporte() {
-		dsl.selecionarComboBox("elementosForm:esportes", "Natacao");
-		dsl.selecionarComboBox("elementosForm:esportes", "O que eh esporte?");
+		dsl.selecionarCombo("elementosForm:esportes", "Natacao");
+		dsl.selecionarCombo("elementosForm:esportes", "O que eh esporte?");
 		btnCadastrar();
-		Alert alerta = driver.switchTo().alert();
-		Assert.assertEquals("Voce faz esporte ou nao?", alerta.getText());
-		alerta.accept();
+		Assert.assertEquals("Voce faz esporte ou nao?", dsl.alertaObterTextoAceitar());
 		dsl.desmarcarCombo("elementosForm:esportes", "O que eh esporte?");
 	}
 	@Test

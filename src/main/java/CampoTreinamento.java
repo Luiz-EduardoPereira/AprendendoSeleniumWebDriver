@@ -25,15 +25,15 @@ public class CampoTreinamento {
 	}
 	@Test
 	public void usarTextField() {
-		dsl.escreve("elementosForm:nome", "Wies");
-		dsl.escreve("elementosForm:sobrenome", "Nuyhe");
+		dsl.escrever("elementosForm:nome", "Wies");
+		dsl.escrever("elementosForm:sobrenome", "Nuyhe");
 		Assert.assertEquals("Wies", dsl.obterValorCampo("elementosForm:nome"));
 		Assert.assertEquals("Nuyhe", dsl.obterValorCampo("elementosForm:sobrenome"));
 	}
 	@Test
 	public void limparTextField() {
-		dsl.escreve("elementosForm:nome", "Wies");
-		dsl.escreve("elementosForm:sobrenome", "Nuyhe");
+		dsl.escrever("elementosForm:nome", "Wies");
+		dsl.escrever("elementosForm:sobrenome", "Nuyhe");
 		dsl.limparText("elementosForm:nome");
 		dsl.limparText("elementosForm:sobrenome");
 		Assert.assertEquals("", dsl.obterValorCampo("elementosForm:nome"));
@@ -41,50 +41,50 @@ public class CampoTreinamento {
 	}
 	@Test
 	public void usarTextArea() {
-		dsl.escreve("elementosForm:sugestoes", "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. ");
+		dsl.escrever("elementosForm:sugestoes", "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. ");
 		Assert.assertEquals("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. ", dsl.obterValorCampo("elementosForm:sugestoes"));
 	}
 	@Test
 	public void usarTextAreaComQuebraLinha() {
-		dsl.escreve("elementosForm:sugestoes", "Agile\nQA\nPO\nDEV");
+		dsl.escrever("elementosForm:sugestoes", "Agile\nQA\nPO\nDEV");
 		Assert.assertEquals("Agile\nQA\nPO\nDEV", dsl.obterValorCampo("elementosForm:sugestoes"));
 		}
 	@Test
 	public void limparTextArea() {
-		dsl.escreve("elementosForm:sugestoes", "Agile\nQA\nPO\nDEV");
+		dsl.escrever("elementosForm:sugestoes", "Agile\nQA\nPO\nDEV");
 		dsl.limparText("elementosForm:sugestoes");
 		Assert.assertEquals("", dsl.obterValorCampo("elementosForm:sugestoes"));
 	}
 	@Test
 	public void usarRadioButton() {
 		dsl.clicar(By.id("elementosForm:sexo:0"));
-		Assert.assertTrue(dsl.checarMarcacaoRadio("elementosForm:sexo:0"));
+		Assert.assertTrue(dsl.checarMarcacao("elementosForm:sexo:0"));
 	}
 	@Test
 	public void usarRadioButtonAlternando() {
 		dsl.clicar(By.id("elementosForm:sexo:0"));
 		dsl.clicar(By.id("elementosForm:sexo:1"));
-		Assert.assertTrue(dsl.checarMarcacaoRadio("elementosForm:sexo:1"));
+		Assert.assertTrue(dsl.checarMarcacao("elementosForm:sexo:1"));
 	}
 	@Test
 	public void usarCheckBox() {
 		dsl.clicar(By.id("elementosForm:comidaFavorita:0"));
-		Assert.assertTrue(dsl.checarMarcacaoCheckBox("elementosForm:comidaFavorita:0"));
+		Assert.assertTrue(dsl.checarMarcacao("elementosForm:comidaFavorita:0"));
 	}
 	@Test
 	public void usarCheckBoxMultiplo() {
 		dsl.clicar(By.id("elementosForm:comidaFavorita:0"));
 		dsl.clicar(By.id("elementosForm:comidaFavorita:1"));
 		dsl.clicar(By.id("elementosForm:comidaFavorita:2"));
-		dsl.checarMarcacaoCheckBox("elementosForm:comidaFavorita:0");
-		dsl.checarMarcacaoCheckBox("elementosForm:comidaFavorita:1");
-		dsl.checarMarcacaoCheckBox("elementosForm:comidaFavorita:2");
+		dsl.checarMarcacao("elementosForm:comidaFavorita:0");
+		dsl.checarMarcacao("elementosForm:comidaFavorita:1");
+		dsl.checarMarcacao("elementosForm:comidaFavorita:2");
 	}
 	@Test
 	public void limparCheckBox() {
 		dsl.clicar(By.id("elementosForm:comidaFavorita:0"));
 		dsl.clicar(By.id("elementosForm:comidaFavorita:0"));
-		Assert.assertFalse(dsl.checarMarcacaoCheckBox("elementosForm:comidaFavorita:0"));
+		Assert.assertFalse(dsl.checarMarcacao("elementosForm:comidaFavorita:0"));
 	}
 	@Test
 	public void pegarQuantidadeOpcoesComboBoxEscolaridade() {
@@ -109,7 +109,7 @@ public class CampoTreinamento {
 	}
 	@Test
 	public void usarComboBoxSelecionarVisibleText() {
-		dsl.selecionarComboBox("elementosForm:escolaridade", "Doutorado");
+		dsl.selecionarCombo("elementosForm:escolaridade", "Doutorado");
 		Assert.assertEquals("Doutorado", dsl.obterValorCombo("elementosForm:escolaridade"));
 	}
 	@Test
@@ -121,9 +121,9 @@ public class CampoTreinamento {
 	}
 	@Test
 	public void usarComboBoxMultiplo() {
-		dsl.selecionarComboBox("elementosForm:esportes", "Natacao");
-		dsl.selecionarComboBox("elementosForm:esportes", "Corrida");
-		dsl.selecionarComboBox("elementosForm:esportes", "Futebol");
+		dsl.selecionarCombo("elementosForm:esportes", "Natacao");
+		dsl.selecionarCombo("elementosForm:esportes", "Corrida");
+		dsl.selecionarCombo("elementosForm:esportes", "Futebol");
 		WebElement elemento = driver.findElement(By.id("elementosForm:esportes"));
 		Select combo = new Select(elemento);
 		List<WebElement> listaComboBox = combo.getAllSelectedOptions();
@@ -131,9 +131,9 @@ public class CampoTreinamento {
 	}
 	@Test
 	public void desmarcarTodosComboBox() {
-		dsl.selecionarComboBox("elementosForm:esportes", "Natacao");
-		dsl.selecionarComboBox("elementosForm:esportes", "Corrida");
-		dsl.selecionarComboBox("elementosForm:esportes", "Futebol");
+		dsl.selecionarCombo("elementosForm:esportes", "Natacao");
+		dsl.selecionarCombo("elementosForm:esportes", "Corrida");
+		dsl.selecionarCombo("elementosForm:esportes", "Futebol");
 		dsl.desmarcarTodosCombo("elementosForm:esportes");
 		WebElement elemento = driver.findElement(By.id("elementosForm:esportes"));
 		Select combo = new Select(elemento);
@@ -142,7 +142,7 @@ public class CampoTreinamento {
 	}
 	@Test
 	public void desmarcarUmComboBox() {
-		dsl.selecionarComboBox("elementosForm:esportes", "Natacao");
+		dsl.selecionarCombo("elementosForm:esportes", "Natacao");
 		dsl.desmarcarCombo("elementosForm:esportes", "Natacao");
 		//dsl.obterValorCombo("elementosForm:esportes");
 		WebElement elemento = driver.findElement(By.id("elementosForm:esportes"));

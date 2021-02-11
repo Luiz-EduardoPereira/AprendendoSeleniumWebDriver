@@ -33,7 +33,7 @@ public class TesteGoogle {
 	public void realizarPesquisaGoogle(){
 		abrirGuiaGoogle();
 		pausa();
-		dsl.escreve(By.xpath("//input[@name='q']"), "Java");
+		dsl.escrever(By.xpath("//input[@name='q']"), "Java");
 		driver.findElement(By.xpath("//div[@class='FPdoLc tfB0Bf']//input[@name='btnK']")).sendKeys(Keys.ENTER);
 		Assert.assertEquals("Java", dsl.obterTexto(By.xpath("//span[.='Java']")));
 	}

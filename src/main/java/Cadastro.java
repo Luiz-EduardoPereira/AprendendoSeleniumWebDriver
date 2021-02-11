@@ -2,7 +2,6 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -24,31 +23,25 @@ public class Cadastro{
 	@Test
 	public void verificarCamposObrigatorios() {
 		dsl.clicar(By.id("elementosForm:cadastrar"));
-		Alert alertaNome = driver.switchTo().alert();
-		Assert.assertEquals("Nome eh obrigatorio", alertaNome.getText());
-		alertaNome.accept();
-		dsl.escreve("elementosForm:nome", "Daceos");
+		Assert.assertEquals("Nome eh obrigatorio", dsl.alertaObterTextoAceitar());
+		dsl.escrever("elementosForm:nome", "Daceos");
 		dsl.clicar(By.id("elementosForm:cadastrar"));
-		Alert alertaSobrenome = driver.switchTo().alert();
-		Assert.assertEquals("Sobrenome eh obrigatorio", alertaSobrenome.getText());
-		alertaSobrenome.accept();
-		dsl.escreve("elementosForm:sobrenome", "Clicen");
+		Assert.assertEquals("Sobrenome eh obrigatorio", dsl.alertaObterTextoAceitar());
+		dsl.escrever("elementosForm:sobrenome", "Clicen");
 		dsl.clicar(By.id("elementosForm:cadastrar"));
-		Alert alertaSexo = driver.switchTo().alert();
-		Assert.assertEquals("Sexo eh obrigatorio", alertaSexo.getText());
-		alertaSobrenome.accept();
+		Assert.assertEquals("Sexo eh obrigatorio", dsl.alertaObterTextoAceitar());
 		dsl.clicar(By.id("elementosForm:sexo:1"));
 		dsl.clicar(By.id("elementosForm:cadastrar"));
 	}
 	@Test
 	public void realizarCadastro() {
-		dsl.escreve("elementosForm:nome", "Luiz");
-		dsl.escreve("elementosForm:sobrenome", "Eduardo");
+		dsl.escrever("elementosForm:nome", "Luiz");
+		dsl.escrever("elementosForm:sobrenome", "Eduardo");
 		dsl.clicar(By.id("elementosForm:cadastrar"));
 		dsl.clicar(By.id("elementosForm:comidaFavorita:0"));
-		dsl.selecionarComboBox("elementosForm:escolaridade", "Superior");
-		dsl.selecionarComboBox("elementosForm:esportes", "Futebol");
-		dsl.escreve("elementosForm:sugestoes", "Devo aprender a fazer automatização com o Selenium WebDriver.");
+		dsl.selecionarCombo("elementosForm:escolaridade", "Superior");
+		dsl.selecionarCombo("elementosForm:esportes", "Futebol");
+		dsl.escrever("elementosForm:sugestoes", "Devo aprender a fazer automatização com o Selenium WebDriver.");
 		dsl.clicar(By.id("elementosForm:cadastrar"));
 		validarCadastro();
 	}
@@ -64,15 +57,15 @@ public class Cadastro{
 	}
 	@Test
 	public void realizarCadastroComOpcoesDiversas() {
-		dsl.escreve("elementosForm:nome", "Luiz");
-		dsl.escreve("elementosForm:sobrenome", "Eduardo");
+		dsl.escrever("elementosForm:nome", "Luiz");
+		dsl.escrever("elementosForm:sobrenome", "Eduardo");
 		dsl.clicar(By.id("elementosForm:sexo:0"));
 		dsl.clicar(By.id("elementosForm:comidaFavorita:0"));
 		dsl.clicar(By.id("elementosForm:comidaFavorita:2"));
-		dsl.selecionarComboBox("elementosForm:escolaridade", "Superior");
-		dsl.selecionarComboBox("elementosForm:esportes", "Futebol");
-		dsl.selecionarComboBox("elementosForm:esportes", "Natacao");
-		dsl.escreve("elementosForm:sugestoes", "Devo aprender a fazer automatização com o Selenium WebDriver.");
+		dsl.selecionarCombo("elementosForm:escolaridade", "Superior");
+		dsl.selecionarCombo("elementosForm:esportes", "Futebol");
+		dsl.selecionarCombo("elementosForm:esportes", "Natacao");
+		dsl.escrever("elementosForm:sugestoes", "Devo aprender a fazer automatização com o Selenium WebDriver.");
 		dsl.clicar(By.id("elementosForm:cadastrar"));
 		validarCadastroMultiplo();
 	}

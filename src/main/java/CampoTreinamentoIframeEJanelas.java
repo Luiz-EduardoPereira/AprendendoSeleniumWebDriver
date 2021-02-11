@@ -2,7 +2,6 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -23,34 +22,34 @@ public class CampoTreinamentoIframeEJanelas{
 	}
 	@Test
 	public void clicarBtnDetroFrame() {
-		driver.switchTo().frame("frame1");
+		dsl.entrarFrame("frame1");
 		dsl.clicar(By.id("frameButton"));
-		Alert alerta = driver.switchTo().alert();
-		Assert.assertEquals("Frame OK!", alerta.getText());
-		alerta.accept();
-		driver.switchTo().defaultContent();
-		dsl.escreve("elementosForm:nome", "Frame button OK!");
-		Assert.assertEquals("Frame button OK!", dsl.obterTextoValue("elementosForm:nome"));
+		Assert.assertEquals("Frame OK!", dsl.alertaObterTextoAceitar());
+		dsl.sairFrame();
+		dsl.escrever("elementosForm:nome", "Frame button OK!");
+		Assert.assertEquals("Frame button OK!", dsl.obterValorCampo("elementosForm:nome"));
 	}
 	@Test
 	public void clicarAbrirPopup() {
 		String msgPopup = "Teste popup";
 		dsl.clicar(By.id("buttonPopUpEasy"));
-		driver.switchTo().window("Popup");
-		dsl.escreve(By.tagName("textarea"), msgPopup);
+		dsl.trocarJanela("Popup");
+		dsl.escrever(By.tagName("textarea"), msgPopup);
 		driver.close();
-		driver.switchTo().window("");
-		dsl.escreve("elementosForm:sugestoes", msgPopup);
-		Assert.assertEquals(msgPopup, dsl.obterTextoValue("elementosForm:sugestoes"));
+		dsl.trocarJanela("");
+		dsl.escrever("elementosForm:sugestoes", msgPopup);
+		Assert.assertEquals(msgPopup, dsl.obterValorCampo("elementosForm:sugestoes"));
 	}
 	@Test
 	public void clicarPopupDoMal() {
 		String msgPopup= "Teste popup";
 		dsl.clicar(By.id("buttonPopUpHard"));
-		driver.switchTo().window((String)driver.getWindowHandles().toArray()[1]);
-		dsl.escreve(By.tagName("textarea"), msgPopup);
-		driver.switchTo().window((String)driver.getWindowHandles().toArray()[0]);
-		dsl.escreve(By.tagName("textarea"), msgPopup);
-		Assert.assertEquals(msgPopup, dsl.obterTextoValue("elementosForm:sugestoes"));
+		String janelaFilho = (String) driver.getWindowHandles().toArray()[1];
+		String janelaPai = (String) driver.getWindowHandles().toArray()[0];
+		dsl.trocarJanela(janelaFilho);
+		dsl.escrever(By.tagName("textarea"), msgPopup);
+		dsl.trocarJanela(janelaPai);
+		dsl.escrever(By.tagName("textarea"), msgPopup);
+		Assert.assertEquals(msgPopup, dsl.obterValorCampo("elementosForm:sugestoes"));
 		}
 }

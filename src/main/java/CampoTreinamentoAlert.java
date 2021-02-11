@@ -2,7 +2,6 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -24,52 +23,37 @@ public class CampoTreinamentoAlert{
 	@Test
 	public void usarAlertSimples() {
 		dsl.clicar(By.id("alert"));
-		Alert alerta = driver.switchTo().alert();
-		String pegarTextAlert = alerta.getText();
-		Assert.assertEquals("Alert Simples", pegarTextAlert);
-		alerta.accept();
-		dsl.escreve("elementosForm:nome", pegarTextAlert);
+		Assert.assertEquals("Alert Simples", dsl.alertaObterTextoAceitar());
+		dsl.escrever("elementosForm:nome", "Alert Simples");
 	}
 	@Test
 	public void usarAlertConfirm() {
 		dsl.clicar(By.id("confirm"));
-		Alert alerta = driver.switchTo().alert();
-		Assert.assertEquals("Confirm Simples", alerta.getText());
-		alerta.accept();
-		Assert.assertEquals("Confirmado", alerta.getText());
-		alerta.accept();
+		Assert.assertEquals("Confirm Simples", dsl.alertaObterTextoAceitar());
+		Assert.assertEquals("Confirmado", dsl.alertaObterTextoAceitar());
 	}
 	@Test
 	public void usarAlertCancelar() {
 		dsl.clicar(By.id("confirm"));
-		Alert alerta = driver.switchTo().alert();
-		Assert.assertEquals("Confirm Simples", alerta.getText());
-		alerta.dismiss();
-		Assert.assertEquals("Negado", alerta.getText());
-		alerta.accept();
+		Assert.assertEquals("Confirm Simples", dsl.alertaObterTextoNegar());
+		Assert.assertEquals("Negado", dsl.alertaObterTextoAceitar());
 	}
 	@Test
 	public void usarAlertPromptConfirmando() {
 		dsl.clicar(By.id("prompt"));
-		Alert alerta = driver.switchTo().alert();
 		String numero = "123";
-		alerta.sendKeys(numero);
-		alerta.accept();
-		Assert.assertEquals("Era "+numero+"?", alerta.getText());
-		alerta.accept();
-		Assert.assertEquals(":D", alerta.getText());
-		alerta.accept();
+		dsl.alertaEscrever(numero);
+		dsl.alertaAceitar();
+		Assert.assertEquals("Era "+numero+"?", dsl.alertaObterTextoAceitar());
+		Assert.assertEquals(":D", dsl.alertaObterTextoAceitar());
 		}
 	@Test
 	public void usarAlertPromptNaoConfirmando() {
 		dsl.clicar(By.id("prompt"));
-		Alert alerta = driver.switchTo().alert();
 		String numero = "123";
-		alerta.sendKeys(numero);
-		alerta.accept();
-		Assert.assertEquals("Era "+numero+"?", alerta.getText());
-		alerta.dismiss();
-		Assert.assertEquals(":(", alerta.getText());
-		alerta.accept();
+		dsl.alertaEscrever(numero);
+		dsl.alertaAceitar();
+		Assert.assertEquals("Era "+numero+"?", dsl.alertaObterTextoNegar());
+		Assert.assertEquals(":(", dsl.alertaObterTextoAceitar());
 	}
 }
