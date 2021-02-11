@@ -85,40 +85,40 @@ public class CampoTreinamento {
 		dsl.clicar(By.id("elementosForm:comidaFavorita:0"));
 		dsl.clicar(By.id("elementosForm:comidaFavorita:0"));
 		Assert.assertFalse(dsl.checarMarcacaoCheckBox("elementosForm:comidaFavorita:0"));
-	}/*				PRECISA AJUSTAR
+	}
 	@Test
 	public void pegarQuantidadeOpcoesComboBoxEscolaridade() {
 		WebElement elemento = driver.findElement(By.id("elementosForm:escolaridade"));
 		Select combo = new Select(elemento);
 		List<WebElement> listaOpcoes = combo.getOptions();
 		Assert.assertEquals(8, listaOpcoes.size());
-	}*/
-	/*@Test
+	}
+	@Test
 	public void usarComboBoxSelecionarIndex() {
 		WebElement elemento = driver.findElement(By.id("elementosForm:escolaridade"));
 		Select combo = new Select(elemento);
 		combo.selectByIndex(4);
 		Assert.assertEquals("Superior", combo.getFirstSelectedOption().getText());
-	}*/
-	/*@Test
+	}
+	@Test
 	public void usarComboBoxSelecionarValue() {
 		WebElement elemento = driver.findElement(By.id("elementosForm:escolaridade"));
 		Select combo = new Select(elemento);
 		combo.selectByValue("1grauincomp");
 		Assert.assertEquals("1o grau incompleto", combo.getFirstSelectedOption().getText());
-	}*/
+	}
 	@Test
 	public void usarComboBoxSelecionarVisibleText() {
 		dsl.selecionarComboBox("elementosForm:escolaridade", "Doutorado");
 		Assert.assertEquals("Doutorado", dsl.obterValorCombo("elementosForm:escolaridade"));
 	}
-	/*@Test
+	@Test
 	public void pegarQuantidadeOpcoesComboBoxEsportes() {
 		WebElement elemento = driver.findElement(By.id("elementosForm:esportes"));
 		Select combo = new Select(elemento);
 		List<WebElement> listaOpcoes = combo.getOptions();
 		Assert.assertEquals(5, listaOpcoes.size());
-	}*/
+	}
 	@Test
 	public void usarComboBoxMultiplo() {
 		dsl.selecionarComboBox("elementosForm:esportes", "Natacao");
