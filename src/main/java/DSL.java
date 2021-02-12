@@ -28,9 +28,6 @@ public class DSL {
 	public String obterTexto(String id) {
 		return driver.findElement(By.id(id)).getText();
 	}
-	public boolean obterComecoTextoBoolean(String id, String texto) {
-		return driver.findElement(By.id(id)).getText().startsWith(texto);
-	}
 	public void limparText(String id) {
 		driver.findElement(By.id(id)).clear();
 	}

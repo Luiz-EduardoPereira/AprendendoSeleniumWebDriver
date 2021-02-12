@@ -2,19 +2,18 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class Cadastro{
 	private static WebDriver driver;
-	private DSL dsl;
+	private CampoTreinamentoPage page;
 	@Before
 	public void inicializar() {
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		driver.get("file:///" + System.getProperty("user.dir")+ "/src/main/resources/componentes.html");
-		dsl = new DSL(driver);
+		page = new CampoTreinamentoPage(driver);
 	}
 	@After
 	public void fecharBrowser() {
@@ -22,62 +21,62 @@ public class Cadastro{
 	}
 	@Test
 	public void verificarCamposObrigatorios() {
-		dsl.clicar(By.id("elementosForm:cadastrar"));
-		Assert.assertEquals("Nome eh obrigatorio", dsl.alertaObterTextoAceitar());
-		dsl.escrever("elementosForm:nome", "Daceos");
-		dsl.clicar(By.id("elementosForm:cadastrar"));
-		Assert.assertEquals("Sobrenome eh obrigatorio", dsl.alertaObterTextoAceitar());
-		dsl.escrever("elementosForm:sobrenome", "Clicen");
-		dsl.clicar(By.id("elementosForm:cadastrar"));
-		Assert.assertEquals("Sexo eh obrigatorio", dsl.alertaObterTextoAceitar());
-		dsl.clicar(By.id("elementosForm:sexo:1"));
-		dsl.clicar(By.id("elementosForm:cadastrar"));
+		page.cadastrar();
+		Assert.assertEquals("Nome eh obrigatorio", page.obterTextoAlertEAceitar());
+		page.inserirNome("Daceos");
+		page.cadastrar();
+		Assert.assertEquals("Sobrenome eh obrigatorio", page.obterTextoAlertEAceitar());
+		page.inserirSobrenome("Clicen");
+		page.cadastrar();
+		Assert.assertEquals("Sexo eh obrigatorio", page.obterTextoAlertEAceitar());
+		page.setSexoMasculino();
+		page.cadastrar();
 	}
 	@Test
 	public void realizarCadastro() {
-		dsl.escrever("elementosForm:nome", "Luiz");
-		dsl.escrever("elementosForm:sobrenome", "Eduardo");
-		dsl.clicar(By.id("elementosForm:cadastrar"));
-		dsl.clicar(By.id("elementosForm:comidaFavorita:0"));
-		dsl.selecionarCombo("elementosForm:escolaridade", "Superior");
-		dsl.selecionarCombo("elementosForm:esportes", "Futebol");
-		dsl.escrever("elementosForm:sugestoes", "Devo aprender a fazer automatização com o Selenium WebDriver.");
-		dsl.clicar(By.id("elementosForm:cadastrar"));
+		page.inserirNome("Luiz");
+		page.inserirSobrenome("Eduardo");
+		page.setSexoMasculino();
+		page.setComidaPizza();
+		page.setEscolaridade("Superior");
+		page.setEsporte("Futebol");
+		page.inserirSugestao("Devo aprender a fazer automatização com o Selenium WebDriver.");
+		page.cadastrar();
 		validarCadastro();
 	}
 	public void validarCadastro() {
-		Assert.assertTrue(dsl.obterComecoTextoBoolean("resultado", "Cadastrado!"));
-		Assert.assertEquals("Nome: Luiz", dsl.obterTexto("descNome"));
-		Assert.assertEquals("Sobrenome: Eduardo", dsl.obterTexto("descSobrenome"));
-		Assert.assertEquals("Sexo: Masculino", dsl.obterTexto("descSexo"));
-		Assert.assertEquals("Comida: Carne", dsl.obterTexto("descComida"));
-		Assert.assertEquals("Escolaridade: superior",  dsl.obterTexto("descEscolaridade"));
-		Assert.assertEquals("Esportes: Futebol", dsl.obterTexto("descEsportes"));
-		Assert.assertEquals("Sugestoes: Devo aprender a fazer automatização com o Selenium WebDriver.", dsl.obterTexto("descSugestoes"));
+		Assert.assertTrue(page.obterResultadoCadastro().startsWith("Cadastrado!"));
+		Assert.assertTrue(page.obterNomeCadastrado().endsWith("Luiz"));
+		Assert.assertEquals("Sobrenome: Eduardo", page.obterSobrenomeCadastrado());
+		Assert.assertEquals("Sexo: Masculino", page.obterSexoCadastrado());
+		Assert.assertEquals("Comida: Pizza", page.obterComidaCadastrada());
+		Assert.assertEquals("Escolaridade: superior",  page.obterEscolaridadeCadastrada());
+		Assert.assertEquals("Esportes: Futebol", page.obterEsporteCadastrado());
+		Assert.assertEquals("Sugestoes: Devo aprender a fazer automatização com o Selenium WebDriver.", page.obterSugestaoCadastrada());
 	}
 	@Test
 	public void realizarCadastroComOpcoesDiversas() {
-		dsl.escrever("elementosForm:nome", "Luiz");
-		dsl.escrever("elementosForm:sobrenome", "Eduardo");
-		dsl.clicar(By.id("elementosForm:sexo:0"));
-		dsl.clicar(By.id("elementosForm:comidaFavorita:0"));
-		dsl.clicar(By.id("elementosForm:comidaFavorita:2"));
-		dsl.selecionarCombo("elementosForm:escolaridade", "Superior");
-		dsl.selecionarCombo("elementosForm:esportes", "Futebol");
-		dsl.selecionarCombo("elementosForm:esportes", "Natacao");
-		dsl.escrever("elementosForm:sugestoes", "Devo aprender a fazer automatização com o Selenium WebDriver.");
-		dsl.clicar(By.id("elementosForm:cadastrar"));
+		page.inserirNome("Luiz");
+		page.inserirSobrenome("Eduardo");
+		page.setSexoMasculino();
+		page.setComidaPizza();
+		page.setComidaCarne();
+		page.setEscolaridade("Superior");
+		page.setEsporte("Futebol");
+		page.setEsporte("Natacao");
+		page.inserirSugestao("Devo aprender a fazer automatização com o Selenium WebDriver.");
+		page.cadastrar();
 		validarCadastroMultiplo();
 	}
 	public void validarCadastroMultiplo() {
-		Assert.assertTrue(dsl.obterComecoTextoBoolean("resultado", "Cadastrado!"));
-		Assert.assertEquals("Nome: Luiz", dsl.obterTexto("descNome"));
-		Assert.assertEquals("Sobrenome: Eduardo", dsl.obterTexto("descSobrenome"));
-		Assert.assertEquals("Sexo: Masculino", dsl.obterTexto("descSexo"));
-		Assert.assertEquals("Comida: Carne Pizza", dsl.obterTexto("descComida"));
-		Assert.assertEquals("Escolaridade: superior", dsl.obterTexto("descEscolaridade"));
-		Assert.assertEquals("Esportes: Natacao Futebol", dsl.obterTexto("descEsportes"));
-		Assert.assertEquals("Sugestoes: Devo aprender a fazer automatização com o Selenium WebDriver.", dsl.obterTexto("descSugestoes"));
+		Assert.assertTrue(page.obterResultadoCadastro().startsWith("Cadastrado!"));
+		Assert.assertTrue(page.obterNomeCadastrado().endsWith("Luiz"));
+		Assert.assertEquals("Sobrenome: Eduardo", page.obterSobrenomeCadastrado());
+		Assert.assertEquals("Sexo: Masculino", page.obterSexoCadastrado());
+		Assert.assertEquals("Comida: Carne Pizza", page.obterComidaCadastrada());
+		Assert.assertEquals("Escolaridade: superior", page.obterEscolaridadeCadastrada());
+		Assert.assertEquals("Esportes: Natacao Futebol", page.obterEsporteCadastrado());
+		Assert.assertEquals("Sugestoes: Devo aprender a fazer automatização com o Selenium WebDriver.", page.obterSugestaoCadastrada());
 	}
 }
 
