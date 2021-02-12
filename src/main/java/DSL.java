@@ -69,25 +69,19 @@ public class DSL {
 		}
 		return valores;
 	}
+	public int obterQuantidadeCombo(String id){
+		WebElement element = driver.findElement(By.id(id));
+		Select combo = new Select(element);
+		List<WebElement> options = combo.getAllSelectedOptions();
+		return options.size();
+	}
 	public int obterQuantidadeOpcoesCombo(String id){
 		WebElement element = driver.findElement(By.id(id));
 		Select combo = new Select(element);
 		List<WebElement> options = combo.getOptions();
 		return options.size();
 	}
-	
-	public boolean verificarOpcaoCombo(String id, String opcao){
-		WebElement element = driver.findElement(By.id(id));
-		Select combo = new Select(element);
-		List<WebElement> options = combo.getOptions();
-		for(WebElement option: options) {
-			if(option.getText().equals(opcao)){
-				return true;
-			}
-		}
-		return false;
-	}
-	public void clicar(By by) {
+		public void clicar(By by) {
 		driver.findElement(by).click();
 	}
 	public String alertaObterTexto() {
