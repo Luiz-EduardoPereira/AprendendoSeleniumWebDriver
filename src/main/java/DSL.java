@@ -12,14 +12,12 @@ public class DSL {
 	public DSL(WebDriver driver) {
 		this.driver = driver;
 	}
-	public void acessar(String id, String texto) {
-		driver.findElement(By.id(id)).sendKeys(texto);
+	public void escrever(By by, String texto) {
+		driver.findElement(by).clear();
+		driver.findElement(by).sendKeys(texto);
 	}
 	public void escrever(String id, String texto) {
-		driver.findElement(By.id(id)).sendKeys(texto);
-	}
-	public void escrever(By by, String texto) {
-		driver.findElement(by).sendKeys(texto);
+		escrever(By.id(id), texto);
 	}
 	public String obterValorCampo(String id) {
 		return driver.findElement(By.id(id)).getAttribute("value");

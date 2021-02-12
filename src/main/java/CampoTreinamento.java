@@ -1,3 +1,6 @@
+import java.util.Arrays;
+import java.util.List;
+
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -28,6 +31,13 @@ public class CampoTreinamento {
 		dsl.escrever("elementosForm:sobrenome", "Nuyhe");
 		Assert.assertEquals("Wies", dsl.obterValorCampo("elementosForm:nome"));
 		Assert.assertEquals("Nuyhe", dsl.obterValorCampo("elementosForm:sobrenome"));
+	}
+	@Test
+	public void usarTexFieldDuplo() {
+		dsl.escrever("elementosForm:nome", "Wies");
+		Assert.assertEquals("Wies", dsl.obterValorCampo("elementosForm:nome"));
+		dsl.escrever("elementosForm:nome", "Nuyhe");
+		Assert.assertEquals("Nuyhe", dsl.obterValorCampo("elementosForm:nome"));
 	}
 	@Test
 	public void limparTextField() {
@@ -118,6 +128,10 @@ public class CampoTreinamento {
 		dsl.selecionarCombo("elementosForm:esportes", "Corrida");
 		dsl.selecionarCombo("elementosForm:esportes", "Futebol");
 		Assert.assertEquals(3, dsl.obterQuantidadeCombo("elementosForm:esportes"));
+		dsl.desmarcarCombo("elementosForm:esportes", "Corrida");
+		List<String> opcoesMarcadas = dsl.obterValoresCombo("elementosForm:esportes");
+		Assert.assertEquals(2, opcoesMarcadas.size());
+		Assert.assertTrue(opcoesMarcadas.containsAll(Arrays.asList("Natacao", "Futebol")));
 	}
 	@Test
 	public void desmarcarTodosComboBox() {
