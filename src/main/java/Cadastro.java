@@ -62,8 +62,7 @@ public class Cadastro{
 		page.setComidaPizza();
 		page.setComidaCarne();
 		page.setEscolaridade("Superior");
-		page.setEsporte("Futebol");
-		page.setEsporte("Natacao");
+		page.setEsporte("Futebol","Natacao");
 		page.inserirSugestao("Devo aprender a fazer automatização com o Selenium WebDriver.");
 		page.cadastrar();
 		validarCadastroMultiplo();

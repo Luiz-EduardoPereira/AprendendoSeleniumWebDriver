@@ -28,7 +28,8 @@ public class CampoTreinamentoPage {
 	public void setEscolaridade(String valor) {
 		dsl.selecionarCombo("elementosForm:escolaridade", valor);
 	}
-	public void setEsporte(String valor) {
+	public void setEsporte(String... valores) {
+		for(String valor: valores)
 		dsl.selecionarCombo("elementosForm:esportes", valor);
 	}
 	public void inserirSugestao(String sugestao) {
