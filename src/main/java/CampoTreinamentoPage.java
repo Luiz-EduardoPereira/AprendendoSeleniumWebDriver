@@ -25,12 +25,18 @@ public class CampoTreinamentoPage {
 	public void setComidaCarne() {
 		dsl.clicar(By.id("elementosForm:comidaFavorita:0"));
 	}
+	public void setComidaVegetariano() {
+		dsl.clicar(By.id("elementosForm:comidaFavorita:3"));
+	}
 	public void setEscolaridade(String valor) {
 		dsl.selecionarCombo("elementosForm:escolaridade", valor);
 	}
 	public void setEsporte(String... valores) {
 		for(String valor: valores)
 		dsl.selecionarCombo("elementosForm:esportes", valor);
+	}
+	public void desmarcarEsporte(String valor) {
+		dsl.desmarcarCombo("elementosForm:esportes", valor);
 	}
 	public void inserirSugestao(String sugestao) {
 		dsl.escrever("elementosForm:sugestoes", sugestao);
