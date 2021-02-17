@@ -19,6 +19,9 @@ public class CampoTreinamentoPage {
 	public void setSexoMasculino() {
 		dsl.clicar(By.id("elementosForm:sexo:0"));
 	}
+	public void setSexoFeminino() {
+		dsl.clicar(By.id("elementosForm:sexo:1"));
+	}
 	public void setComidaPizza() {
 		dsl.clicar(By.id("elementosForm:comidaFavorita:2"));
 	}
