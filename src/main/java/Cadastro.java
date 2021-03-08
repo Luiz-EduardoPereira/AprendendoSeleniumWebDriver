@@ -45,14 +45,14 @@ public class Cadastro{
 		validarCadastro();
 	}
 	public void validarCadastro() {
-		Assert.assertTrue(page.obterResultadoCadastro().startsWith("Cadastrado!"));
-		Assert.assertTrue(page.obterNomeCadastrado().endsWith("Luiz"));
-		Assert.assertEquals("Sobrenome: Eduardo", page.obterSobrenomeCadastrado());
-		Assert.assertEquals("Sexo: Masculino", page.obterSexoCadastrado());
-		Assert.assertEquals("Comida: Pizza", page.obterComidaCadastrada());
-		Assert.assertEquals("Escolaridade: superior",  page.obterEscolaridadeCadastrada());
-		Assert.assertEquals("Esportes: Futebol", page.obterEsporteCadastrado());
-		Assert.assertEquals("Sugestoes: Devo aprender a fazer automatização com o Selenium WebDriver.", page.obterSugestaoCadastrada());
+		Assert.assertEquals("Cadastrado!", page.obterResultadoCadastro());
+		Assert.assertEquals("Luiz",page.obterNomeCadastrado());
+		Assert.assertEquals("Eduardo", page.obterSobrenomeCadastrado());
+		Assert.assertEquals("Masculino", page.obterSexoCadastrado());
+		Assert.assertEquals("Pizza", page.obterComidaCadastrada());
+		Assert.assertEquals("superior",  page.obterEscolaridadeCadastrada());
+		Assert.assertEquals("Futebol", page.obterEsporteCadastrado());
+		Assert.assertEquals("Devo aprender a fazer automatização com o Selenium WebDriver.", page.obterSugestaoCadastrada());
 	}
 	@Test
 	public void realizarCadastroComOpcoesDiversas() {
@@ -68,14 +68,14 @@ public class Cadastro{
 		validarCadastroMultiplo();
 	}
 	public void validarCadastroMultiplo() {
-		Assert.assertTrue(page.obterResultadoCadastro().startsWith("Cadastrado!"));
-		Assert.assertTrue(page.obterNomeCadastrado().endsWith("Luiz"));
-		Assert.assertEquals("Sobrenome: Eduardo", page.obterSobrenomeCadastrado());
-		Assert.assertEquals("Sexo: Masculino", page.obterSexoCadastrado());
-		Assert.assertEquals("Comida: Carne Pizza", page.obterComidaCadastrada());
-		Assert.assertEquals("Escolaridade: superior", page.obterEscolaridadeCadastrada());
-		Assert.assertEquals("Esportes: Natacao Futebol", page.obterEsporteCadastrado());
-		Assert.assertEquals("Sugestoes: Devo aprender a fazer automatização com o Selenium WebDriver.", page.obterSugestaoCadastrada());
+		Assert.assertEquals("Cadastrado!", page.obterResultadoCadastro());
+		Assert.assertEquals("Luiz", page.obterNomeCadastrado());
+		Assert.assertEquals("Eduardo", page.obterSobrenomeCadastrado());
+		Assert.assertEquals("Masculino", page.obterSexoCadastrado());
+		Assert.assertEquals("Carne Pizza", page.obterComidaCadastrada());
+		Assert.assertEquals("superior", page.obterEscolaridadeCadastrada());
+		Assert.assertEquals("Natacao Futebol", page.obterEsporteCadastrado());
+		Assert.assertEquals("Devo aprender a fazer automatização com o Selenium WebDriver.", page.obterSugestaoCadastrada());
 	}
 }
 

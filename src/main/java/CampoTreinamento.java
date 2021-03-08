@@ -22,10 +22,10 @@ public class CampoTreinamento {
 		driver.get("file:///" + System.getProperty("user.dir")+ "/src/main/resources/componentes.html");
 		dsl = new DSL(driver);
 	}
-	/*@After
+	@After
 	public void fecharBrowser() {
 		driver.quit();
-	}*/
+	}
 	@Test
 	public void usarTextField() {
 		dsl.escrever("elementosForm:nome", "Wies");

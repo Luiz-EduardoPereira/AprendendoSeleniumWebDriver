@@ -45,28 +45,28 @@ public class CampoTreinamentoPage {
 		dsl.escrever("elementosForm:sugestoes", sugestao);
 	}
 	public String obterResultadoCadastro() {
-		return dsl.obterTexto("resultado");
+		return dsl.obterTexto(By.xpath("//*[@id='resultado']/span"));
 	}
 	public String obterNomeCadastrado() {
-		return dsl.obterTexto("descNome");
+		return dsl.obterTexto(By.xpath("//*[@id='descNome']/span"));
 	}
 	public String obterSobrenomeCadastrado() {
-		return dsl.obterTexto("descSobrenome");
+		return dsl.obterTexto(By.xpath("//*[@id='descSobrenome']/span"));
 	}
 	public String obterSexoCadastrado() {
-		return dsl.obterTexto("descSexo");
+		return dsl.obterTexto(By.xpath("//*[@id='descSexo']/span"));
 	}
 	public String obterComidaCadastrada() {
-		return dsl.obterTexto("descComida");
+		return dsl.obterTexto(By.xpath("//*[@id='descComida']/span"));
 	}
 	public String obterEscolaridadeCadastrada() {
-		return dsl.obterTexto("descEscolaridade");
+		return dsl.obterTexto(By.xpath("//*[@id='descEscolaridade']/span"));
 	}
 	public String obterEsporteCadastrado() {
-		return dsl.obterTexto("descEsportes");
+		return dsl.obterTexto(By.xpath("//*[@id='descEsportes']/span"));
 	}
 	public String obterSugestaoCadastrada() {
-		 return dsl.obterTexto("descSugestoes");
+		 return dsl.obterTexto(By.xpath("//*[@id='descSugestoes']/span"));
 	}
 	public String obterTextoAlertEAceitar() {
 		return dsl.alertaObterTextoAceitar();
