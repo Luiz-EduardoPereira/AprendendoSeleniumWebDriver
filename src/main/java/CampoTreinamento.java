@@ -22,10 +22,10 @@ public class CampoTreinamento {
 		driver.get("file:///" + System.getProperty("user.dir")+ "/src/main/resources/componentes.html");
 		dsl = new DSL(driver);
 	}
-	@After
+	/*@After
 	public void fecharBrowser() {
 		driver.quit();
-	}
+	}*/
 	@Test
 	public void usarTextField() {
 		dsl.escrever("elementosForm:nome", "Wies");
@@ -172,5 +172,9 @@ public class CampoTreinamento {
 		js.executeScript("document.getElementById('elementosForm:sobrenome').type = 'radio'");
 		WebElement elemento = driver.findElement(By.id("elementosForm:nome"));
 		js.executeScript("arguments[0].style.border = arguments[1]", elemento, "solid 4px red");
+	}
+	@Test
+	public void clicarBtnTabela() {
+		dsl.clicarBtnTabela("Escolaridade", "Mestrado", "Radio", "elementosForm:tableUsuarios");
 	}
 }
