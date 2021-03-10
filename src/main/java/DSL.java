@@ -31,13 +31,26 @@ public class DSL {
 	public void limparText(String id) {
 		driver.findElement(By.id(id)).clear();
 	}
+	public boolean checarMarcacao(By by) {
+		return driver.findElement(by).isSelected();
+	}
 	public boolean checarMarcacao(String id) {
 		return driver.findElement(By.id(id)).isSelected();
+	}
+	public void selecionarCombo(By by, String opcao, String valor) {
+		WebElement elemento = driver.findElement(by);
+		Select combo = new Select(elemento);
+		elemento.findElement(By.xpath("./option[.="+opcao+""));
+		combo.selectByVisibleText(valor);
 	}
 	public void selecionarCombo(String id, String valor) {
 		WebElement elemento = driver.findElement(By.id(id));
 		Select combo = new Select(elemento);
 		combo.selectByVisibleText(valor);
+	}
+	public void selecionarComboPrimeFaces(String radical, String valor) {
+		clicar(By.xpath("//select[@id='"+radical+"_input']/../..//span"));
+		clicar(By.xpath("//div[@id='"+radical+"_panel']//li[.='"+valor+"']"));
 	}
 	public void desmarcarCombo(String id, String valor) {
 		WebElement elemento = driver.findElement(By.id(id));
