@@ -33,14 +33,11 @@ public class TestePrimeFaces {
 	@Test
 	public void usarComboPrimeFaces() {
 		driver.get("https://www.primefaces.org/showcase/ui/input/oneMenu.xhtml?jfwid=4fa5f");
-		/*dsl.clicar(By.xpath("//*[@id='j_idt299:option_input']/../..//span"));
-		dsl.clicar(By.xpath("//*[@id='"+"j_idt299:option_"+"items']//li[.='Option1']"));*/
 		dsl.selecionarComboPrimeFaces("j_idt299:option", "Option2");
 		Assert.assertEquals("Option2", dsl.obterTexto("j_idt299:option_label"));
 	}
 	@Test
 	public void usarFormLayoutPrimeFaces() {
-		//firstname1
 		driver.get("https://www.primefaces.org/showcase/primeflex/formlayout.xhtml?jfwid=642cb");
 		dsl.escrever("firstname1", "Daceos");
 		dsl.escrever("lastname1", "Clicen");
@@ -65,4 +62,8 @@ public class TestePrimeFaces {
 		dsl.escrever("j_idt299:lastname", "Clicen");
 		dsl.clicar(By.id("j_idt299:j_idt304"));
 	}
+	/*public void usarTelaPaginada() {
+		driver.get("https://www.primefaces.org/showcase/ui/data/dataexporter/basic.xhtml?jfwid=642cb");
+		
+	}*/
 }
