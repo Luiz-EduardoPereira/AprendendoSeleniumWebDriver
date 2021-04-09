@@ -7,6 +7,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import br.ce.luiz.core.DSL;
+
 public class CampoTreinamentoIframeEJanelas{
 	private static WebDriver driver;
 	private DSL dsl;

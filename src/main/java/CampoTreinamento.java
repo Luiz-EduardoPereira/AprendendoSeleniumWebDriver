@@ -12,13 +12,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 
+import br.ce.luiz.core.DSL;
+
 public class CampoTreinamento {
 	private static WebDriver driver;
 	private DSL dsl;
 	@Before
 	public void inicializar() {
-		driver = new ChromeDriver();
-		driver.manage().window().maximize();
 		driver.get("file:///" + System.getProperty("user.dir")+ "/src/main/resources/componentes.html");
 		dsl = new DSL(driver);
 	}

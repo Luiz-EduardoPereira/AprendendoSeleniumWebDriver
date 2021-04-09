@@ -10,6 +10,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import br.ce.luiz.core.DSL;
+
 public class TesteSincronismo {
 	
 	private static WebDriver driver;

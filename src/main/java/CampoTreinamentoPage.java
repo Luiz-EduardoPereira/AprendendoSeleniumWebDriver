@@ -1,11 +1,11 @@
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+import br.ce.luiz.core.DSL;
 
 public class CampoTreinamentoPage {
 	
 	private DSL dsl;
-	public CampoTreinamentoPage(WebDriver driver) {
-		dsl = new DSL(driver);
+	public CampoTreinamentoPage() {
+		dsl = new DSL();
 	}
 	public void inserirNome(String nome) {
 		dsl.escrever("elementosForm:nome", nome);

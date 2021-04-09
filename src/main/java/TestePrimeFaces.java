@@ -8,6 +8,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import br.ce.luiz.core.DSL;
+
 public class TestePrimeFaces {
 	private WebDriver driver;
 	private DSL dsl;

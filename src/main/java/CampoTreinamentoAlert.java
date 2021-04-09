@@ -6,6 +6,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import br.ce.luiz.core.DSL;
+
 public class CampoTreinamentoAlert{	
 	private static WebDriver driver;
 	private DSL dsl;

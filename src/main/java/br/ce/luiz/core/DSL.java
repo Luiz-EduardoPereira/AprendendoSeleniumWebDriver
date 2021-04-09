@@ -1,3 +1,4 @@
+package br.ce.luiz.core;
 import java.util.ArrayList;
 import java.util.List;
 import org.openqa.selenium.Alert;
@@ -8,43 +9,40 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
 public class DSL {
-	private WebDriver driver;
-	public DSL(WebDriver driver) {
-		this.driver = driver;
-	}
+
 	public void escrever(By by, String texto) {
-		driver.findElement(by).clear();
-		driver.findElement(by).sendKeys(texto);
+		getDriver().findElement(by).clear();
+		getDriver().findElement(by).sendKeys(texto);
 	}
 	public void escrever(String id, String texto) {
 		escrever(By.id(id), texto);
 	}
 	public String obterValorCampo(String id) {
-		return driver.findElement(By.id(id)).getAttribute("value");
+		return getDriver().findElement(By.id(id)).getAttribute("value");
 	}
 	public String obterTexto(By by) {
-		return driver.findElement(by).getText();
+		return getDriver().findElement(by).getText();
 	}
 	public String obterTexto(String id) {
-		return driver.findElement(By.id(id)).getText();
+		return getDriver().findElement(By.id(id)).getText();
 	}
 	public void limparText(String id) {
-		driver.findElement(By.id(id)).clear();
+		getDriver().findElement(By.id(id)).clear();
 	}
 	public boolean checarMarcacao(By by) {
-		return driver.findElement(by).isSelected();
+		return getDriver().findElement(by).isSelected();
 	}
 	public boolean checarMarcacao(String id) {
-		return driver.findElement(By.id(id)).isSelected();
+		return getDriver().findElement(By.id(id)).isSelected();
 	}
 	public void selecionarCombo(By by, String opcao, String valor) {
-		WebElement elemento = driver.findElement(by);
+		WebElement elemento = getDriver().findElement(by);
 		Select combo = new Select(elemento);
 		elemento.findElement(By.xpath("./option[.="+opcao+""));
 		combo.selectByVisibleText(valor);
 	}
 	public void selecionarCombo(String id, String valor) {
-		WebElement elemento = driver.findElement(By.id(id));
+		WebElement elemento = getDriver().findElement(By.id(id));
 		Select combo = new Select(elemento);
 		combo.selectByVisibleText(valor);
 	}
@@ -53,22 +51,22 @@ public class DSL {
 		clicar(By.xpath("//div[@id='"+radical+"_panel']//li[.='"+valor+"']"));
 	}
 	public void desmarcarCombo(String id, String valor) {
-		WebElement elemento = driver.findElement(By.id(id));
+		WebElement elemento = getDriver().findElement(By.id(id));
 		Select combo = new Select(elemento);
 		combo.deselectByVisibleText(valor);
 	}
 	public void desmarcarTodosCombo(String id) {
-		WebElement elemento = driver.findElement(By.id(id));
+		WebElement elemento = getDriver().findElement(By.id(id));
 		Select combo = new Select(elemento);
 		combo.deselectAll();
 	}
 	public String obterValorCombo(String id) {
-		WebElement elemento = driver.findElement(By.id(id));
+		WebElement elemento = getDriver().findElement(By.id(id));
 		Select combo = new Select(elemento);
 		return combo.getFirstSelectedOption().getText();
 	}
 	public List<String> obterValoresCombo(String id) {
-		WebElement element = driver.findElement(By.id("elementosForm:esportes"));
+		WebElement element = getDriver().findElement(By.id("elementosForm:esportes"));
 		Select combo = new Select(element);
 		List<WebElement> allSelectedOptions = combo.getAllSelectedOptions();
 		List<String> valores = new ArrayList<String>();
@@ -78,63 +76,63 @@ public class DSL {
 		return valores;
 	}
 	public int obterQuantidadeCombo(String id){
-		WebElement element = driver.findElement(By.id(id));
+		WebElement element = getDriver().findElement(By.id(id));
 		Select combo = new Select(element);
 		List<WebElement> options = combo.getAllSelectedOptions();
 		return options.size();
 	}
 	public int obterQuantidadeOpcoesCombo(String id){
-		WebElement element = driver.findElement(By.id(id));
+		WebElement element = getDriver().findElement(By.id(id));
 		Select combo = new Select(element);
 		List<WebElement> options = combo.getOptions();
 		return options.size();
 	}
 		public void clicar(By by) {
-		driver.findElement(by).click();
+		getDriver().findElement(by).click();
 	}
 	public String alertaObterTexto() {
-		Alert alerta = driver.switchTo().alert();
+		Alert alerta = getDriver().switchTo().alert();
 		return alerta.getText();
 	}
 	public String alertaObterTextoAceitar() {
-		Alert alerta = driver.switchTo().alert();
+		Alert alerta = getDriver().switchTo().alert();
 		String valor = alerta.getText();
 		alerta.accept();
 		return valor;
 	}
 	public String alertaObterTextoNegar() {
-		Alert alerta = driver.switchTo().alert();
+		Alert alerta = getDriver().switchTo().alert();
 		String valor = alerta.getText();
 		alerta.dismiss();
 		return valor;
 	}
 	public void alertaEscrever(String valor) {
-		Alert alerta = driver.switchTo().alert();
+		Alert alerta = getDriver().switchTo().alert();
 		alerta.sendKeys(valor);
 	}
 	public void alertaAceitar() {
-		Alert alerta = driver.switchTo().alert();
+		Alert alerta = getDriver().switchTo().alert();
 		alerta.accept();
 	}
 	public void alertaNegar() {
-		Alert alerta = driver.switchTo().alert();
+		Alert alerta = getDriver().switchTo().alert();
 		alerta.dismiss();
 	}
 	public void entrarFrame(String id) {
-		driver.switchTo().frame(id);
+		getDriver().switchTo().frame(id);
 	}
 	public void sairFrame() {
-		driver.switchTo().defaultContent();
+		getDriver().switchTo().defaultContent();
 	}
 	public void trocarJanela(String id) {
-		driver.switchTo().window(id);
+		getDriver().switchTo().window(id);
 	}
 	public Object executarJS(String comando, Object... parametros) {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		return js.executeScript(comando, parametros);
 	}
 	public void clicarBtnTabela(String colunaBusca, String valor, String colunaBotao, String idTabela) {
-		WebElement tabela = driver.findElement(By.xpath("//*[@id='elementosForm:tableUsuarios']"));
+		WebElement tabela = getDriver().findElement(By.xpath("//*[@id='elementosForm:tableUsuarios']"));
 		int idColuna = obterIndiceColuna(colunaBusca, tabela);	
 		int idLinha = obterIndiceLinha(valor, tabela, idColuna);
 		int idColunaBotao = obterIndiceColuna(colunaBotao, tabela);
