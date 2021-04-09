@@ -1,3 +1,6 @@
+import static br.ce.luiz.core.DriverFactory.getDriver;
+import static br.ce.luiz.core.DriverFactory.killDriver;
+
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
@@ -10,13 +13,10 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameter;
 import org.junit.runners.Parameterized.Parameters;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 
 
 @RunWith(Parameterized.class)
 public class TesteRegrasCadastro {
-	private static WebDriver driver;
 	private CampoTreinamentoPage page; 
 	
 	@Parameter
@@ -34,14 +34,12 @@ public class TesteRegrasCadastro {
 	
 	@Before
 	public void inicializar() {
-		driver = new ChromeDriver();
-		driver.manage().window().maximize();
-		driver.get("file:///" + System.getProperty("user.dir")+ "/src/main/resources/componentes.html");
-		page = new CampoTreinamentoPage(driver);
+		getDriver().get("file:///" + System.getProperty("user.dir")+ "/src/main/resources/componentes.html");
+		page = new CampoTreinamentoPage();
 	}
 	@After
 	public void fecharBrowser() {
-		driver.quit();
+		killDriver();
 	}
 	@Parameters
 	public static Collection<Object[]> getCollection(){

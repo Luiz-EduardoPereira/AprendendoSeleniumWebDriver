@@ -1,23 +1,20 @@
+import static br.ce.luiz.core.DriverFactory.*;
+
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 
 public class CampoTreinamentoRegraNegocio {
-	private static WebDriver driver;
 	private CampoTreinamentoPage page;
 	@Before
 	public void inicializar() {
-		driver = new ChromeDriver();
-		driver.manage().window().maximize();
-		driver.get("file:///" + System.getProperty("user.dir")+ "/src/main/resources/componentes.html");
-		page = new CampoTreinamentoPage(driver);
+		getDriver().get("file:///" + System.getProperty("user.dir")+ "/src/main/resources/componentes.html");
+		page = new CampoTreinamentoPage();
 	}
 	@After
 	public void fecharBrowser() {
-		driver.quit();
+		killDriver();
 	}
 	@Test
 	public void regraNegocioNome() {

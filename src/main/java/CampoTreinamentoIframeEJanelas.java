@@ -1,27 +1,23 @@
+import static br.ce.luiz.core.DriverFactory.*;
+
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-
 import br.ce.luiz.core.DSL;
 
 public class CampoTreinamentoIframeEJanelas{
-	private static WebDriver driver;
 	private DSL dsl;
 	@Before
 	public void inicializar() {
-		driver = new ChromeDriver();
-		driver.manage().window().maximize();
-		driver.get("file:///" + System.getProperty("user.dir")+ "/src/main/resources/componentes.html");
-		dsl = new DSL(driver);
+		getDriver().get("file:///" + System.getProperty("user.dir")+ "/src/main/resources/componentes.html");
+		dsl = new DSL();
 	}
 	@After
 	public void fecharBrowser() {
-		driver.quit();
+		killDriver();
 	}
 	@Test
 	public void clicarBtnDetroFrame() {
@@ -34,7 +30,7 @@ public class CampoTreinamentoIframeEJanelas{
 	}
 	@Test
 	public void clicarFrameEscondido() {
-		WebElement frame = driver.findElement(By.id("frame2"));
+		WebElement frame = getDriver().findElement(By.id("frame2"));
 		dsl.executarJS("window.scrollBy(0, arguments[0])", frame.getLocation().y);
 		dsl.entrarFrame("frame2");
 		dsl.clicar(By.id("frameButton"));
@@ -46,7 +42,7 @@ public class CampoTreinamentoIframeEJanelas{
 		dsl.clicar(By.id("buttonPopUpEasy"));
 		dsl.trocarJanela("Popup");
 		dsl.escrever(By.tagName("textarea"), msgPopup);
-		driver.close();
+		getDriver().close();
 		dsl.trocarJanela("");
 		dsl.escrever("elementosForm:sugestoes", msgPopup);
 		Assert.assertEquals(msgPopup, dsl.obterValorCampo("elementosForm:sugestoes"));
@@ -55,8 +51,8 @@ public class CampoTreinamentoIframeEJanelas{
 	public void clicarPopupDoMal() {
 		String msgPopup= "Teste popup";
 		dsl.clicar(By.id("buttonPopUpHard"));
-		String janelaFilho = (String) driver.getWindowHandles().toArray()[1];
-		String janelaPai = (String) driver.getWindowHandles().toArray()[0];
+		String janelaFilho = (String) getDriver().getWindowHandles().toArray()[1];
+		String janelaPai = (String) getDriver().getWindowHandles().toArray()[0];
 		dsl.trocarJanela(janelaFilho);
 		dsl.escrever(By.tagName("textarea"), msgPopup);
 		dsl.trocarJanela(janelaPai);

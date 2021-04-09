@@ -1,26 +1,25 @@
+import static br.ce.luiz.core.DriverFactory.getDriver;
+import static br.ce.luiz.core.DriverFactory.*;
+
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 
 import br.ce.luiz.core.DSL;
 
 public class CampoTreinamentoAlert{	
-	private static WebDriver driver;
+
 	private DSL dsl;
 	@Before
 	public void inicializar() {
-		driver = new ChromeDriver();
-		driver.manage().window().maximize();
-		driver.get("file:///" + System.getProperty("user.dir")+ "/src/main/resources/componentes.html");
-		dsl = new DSL(driver);
+		getDriver().get("file:///" + System.getProperty("user.dir")+ "/src/main/resources/componentes.html");
+		dsl = new DSL();
 	}
 	@After
 	public void fecharBrowser() {
-		driver.quit();
+		killDriver();
 	}
 	@Test
 	public void usarAlertSimples() {

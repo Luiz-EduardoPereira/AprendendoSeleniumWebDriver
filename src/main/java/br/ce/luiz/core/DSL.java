@@ -1,10 +1,11 @@
 package br.ce.luiz.core;
+
+import static br.ce.luiz.core.DriverFactory.*;
 import java.util.ArrayList;
 import java.util.List;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
@@ -128,7 +129,7 @@ public class DSL {
 		getDriver().switchTo().window(id);
 	}
 	public Object executarJS(String comando, Object... parametros) {
-		JavascriptExecutor js = (JavascriptExecutor) driver;
+		JavascriptExecutor js = (JavascriptExecutor) getDriver();
 		return js.executeScript(comando, parametros);
 	}
 	public void clicarBtnTabela(String colunaBusca, String valor, String colunaBotao, String idTabela) {

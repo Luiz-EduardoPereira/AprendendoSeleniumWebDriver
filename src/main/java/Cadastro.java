@@ -3,7 +3,6 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.WebDriver;
 import br.ce.luiz.core.DriverFactory;
 
 public class Cadastro{
@@ -11,7 +10,7 @@ public class Cadastro{
 	@Before
 	public void inicializar() {
 		DriverFactory.getDriver().get("file:///" + System.getProperty("user.dir")+ "/src/main/resources/componentes.html");
-		page = new CampoTreinamentoPage(driver);
+		page = new CampoTreinamentoPage();
 	}
 	@After
 	public void fecharBrowser() {

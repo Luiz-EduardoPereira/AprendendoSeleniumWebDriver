@@ -1,30 +1,29 @@
+import static br.ce.luiz.core.DriverFactory.*;
 import java.util.Arrays;
 import java.util.List;
-
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 
 import br.ce.luiz.core.DSL;
+import br.ce.luiz.core.DriverFactory;
 
 public class CampoTreinamento {
-	private static WebDriver driver;
+
 	private DSL dsl;
 	@Before
 	public void inicializar() {
-		driver.get("file:///" + System.getProperty("user.dir")+ "/src/main/resources/componentes.html");
-		dsl = new DSL(driver);
+		DriverFactory.getDriver().get("file:///" + System.getProperty("user.dir")+ "/src/main/resources/componentes.html");
+		dsl = new DSL();
 	}
 	@After
 	public void fecharBrowser() {
-		driver.quit();
+		killDriver();
 	}
 	@Test
 	public void usarTextField() {
@@ -102,14 +101,14 @@ public class CampoTreinamento {
 	}
 	@Test
 	public void usarComboBoxSelecionarIndex() {
-		WebElement elemento = driver.findElement(By.id("elementosForm:escolaridade"));
+		WebElement elemento = getDriver().findElement(By.id("elementosForm:escolaridade"));
 		Select combo = new Select(elemento);
 		combo.selectByIndex(4);
 		Assert.assertEquals("Superior", dsl.obterValorCombo("elementosForm:escolaridade"));
 	}
 	@Test
 	public void usarComboBoxSelecionarValue() {
-		WebElement elemento = driver.findElement(By.id("elementosForm:escolaridade"));
+		WebElement elemento = getDriver().findElement(By.id("elementosForm:escolaridade"));
 		Select combo = new Select(elemento);
 		combo.selectByValue("1grauincomp");
 		Assert.assertEquals("1o grau incompleto", dsl.obterValorCombo("elementosForm:escolaridade"));
@@ -166,11 +165,11 @@ public class CampoTreinamento {
 	}
 	@Test
 	public void interagindoComJavaScript() {
-		JavascriptExecutor js = (JavascriptExecutor) driver;
+		JavascriptExecutor js = (JavascriptExecutor) getDriver();
 		//js.executeScript("alert('Testando js com a ajuda do Selenium')");
 		js.executeScript("document.getElementById('elementosForm:nome').value = 'Escrito via JS.'");
 		js.executeScript("document.getElementById('elementosForm:sobrenome').type = 'radio'");
-		WebElement elemento = driver.findElement(By.id("elementosForm:nome"));
+		WebElement elemento = getDriver().findElement(By.id("elementosForm:nome"));
 		js.executeScript("arguments[0].style.border = arguments[1]", elemento, "solid 4px red");
 	}
 	@Test
