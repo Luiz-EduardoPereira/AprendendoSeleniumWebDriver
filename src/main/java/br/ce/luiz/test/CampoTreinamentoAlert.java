@@ -1,3 +1,4 @@
+package br.ce.luiz.test;
 import static br.ce.luiz.core.DriverFactory.getDriver;
 import static br.ce.luiz.core.DriverFactory.*;
 

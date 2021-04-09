@@ -1,3 +1,4 @@
+package br.ce.luiz.test;
 import static br.ce.luiz.core.DriverFactory.*;
 
 import java.util.concurrent.TimeUnit;

@@ -1,3 +1,4 @@
+package br.ce.luiz.test;
 import org.openqa.selenium.By;
 import br.ce.luiz.core.DSL;
 
