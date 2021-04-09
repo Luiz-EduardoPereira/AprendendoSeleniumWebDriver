@@ -7,6 +7,8 @@ import org.junit.After;
 public class BaseTest {
 	@After
 	public void fecharBrowser() {
-		killDriver();
+		if (Propriedades.FECHAR_BROWSER) {
+				killDriver();
+		}
 	}
 }
