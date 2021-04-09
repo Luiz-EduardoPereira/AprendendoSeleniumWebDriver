@@ -1,13 +1,9 @@
-package br.ce.luiz.test;
+package br.ce.luiz.page;
 import org.openqa.selenium.By;
-import br.ce.luiz.core.DSL;
 
-public class CampoTreinamentoPage {
-	
-	private DSL dsl;
-	public CampoTreinamentoPage() {
-		dsl = new DSL();
-	}
+import br.ce.luiz.core.BasePage;
+
+public class CampoTreinamentoPage extends BasePage{
 	public void inserirNome(String nome) {
 		dsl.escrever("elementosForm:nome", nome);
 	}

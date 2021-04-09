@@ -1,12 +1,10 @@
 package br.ce.luiz.test;
 import static br.ce.luiz.core.DriverFactory.getDriver;
-import static br.ce.luiz.core.DriverFactory.killDriver;
 
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,9 +13,12 @@ import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameter;
 import org.junit.runners.Parameterized.Parameters;
 
+import br.ce.luiz.core.BaseTest;
+import br.ce.luiz.page.CampoTreinamentoPage;
+
 
 @RunWith(Parameterized.class)
-public class TesteRegrasCadastro {
+public class TesteRegrasCadastro extends BaseTest{
 	private CampoTreinamentoPage page; 
 	
 	@Parameter
@@ -37,10 +38,6 @@ public class TesteRegrasCadastro {
 	public void inicializar() {
 		getDriver().get("file:///" + System.getProperty("user.dir")+ "/src/main/resources/componentes.html");
 		page = new CampoTreinamentoPage();
-	}
-	@After
-	public void fecharBrowser() {
-		killDriver();
 	}
 	@Parameters
 	public static Collection<Object[]> getCollection(){

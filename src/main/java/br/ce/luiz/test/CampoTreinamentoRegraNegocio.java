@@ -1,21 +1,19 @@
 package br.ce.luiz.test;
-import static br.ce.luiz.core.DriverFactory.*;
+import static br.ce.luiz.core.DriverFactory.getDriver;
 
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class CampoTreinamentoRegraNegocio {
+import br.ce.luiz.core.BaseTest;
+import br.ce.luiz.page.CampoTreinamentoPage;
+
+public class CampoTreinamentoRegraNegocio extends BaseTest {
 	private CampoTreinamentoPage page;
 	@Before
 	public void inicializar() {
 		getDriver().get("file:///" + System.getProperty("user.dir")+ "/src/main/resources/componentes.html");
 		page = new CampoTreinamentoPage();
-	}
-	@After
-	public void fecharBrowser() {
-		killDriver();
 	}
 	@Test
 	public void regraNegocioNome() {

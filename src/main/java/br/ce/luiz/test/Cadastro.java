@@ -1,21 +1,19 @@
 package br.ce.luiz.test;
-import static br.ce.luiz.core.DriverFactory.*;
-import org.junit.After;
+import static br.ce.luiz.core.DriverFactory.getDriver;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import br.ce.luiz.core.DriverFactory;
 
-public class Cadastro{
+import br.ce.luiz.core.BaseTest;
+import br.ce.luiz.page.CampoTreinamentoPage;
+
+public class Cadastro extends BaseTest{
 	private CampoTreinamentoPage page;
 	@Before
 	public void inicializar() {
-		DriverFactory.getDriver().get("file:///" + System.getProperty("user.dir")+ "/src/main/resources/componentes.html");
+		getDriver().get("file:///" + System.getProperty("user.dir")+ "/src/main/resources/componentes.html");
 		page = new CampoTreinamentoPage();
-	}
-	@After
-	public void fecharBrowser() {
-		killDriver();
 	}
 	@Test
 	public void verificarCamposObrigatorios() {
